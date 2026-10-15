@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Kauppa – Demopörssi</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<div class="demo">DEMO – ei oikeaa rahaa, ei oikeita kauppoja</div>
+<nav class="top"><a class="brand" href="../">Demopörssi</a><div><a href="../">Etusivu</a><a href="./" class="cur">Kauppa</a><a href="../#palkkiot">Palkkiot</a><a href="../#tietoa">Tietoa</a></div></nav>
+<header>
+  <div class="pair"><b>BTC/EUR</b><span class="sub">Bitcoin</span></div>
+  <div class="px"><div id="last" class="last">–</div><span id="chg" class="sub"></span></div>
+  <div class="stats">
+    <div><span class="sub">Ylin</span><b id="hi">–</b></div>
+    <div><span class="sub">Alin</span><b id="lo">–</b></div>
+    <div><span class="sub">Volyymi BTC</span><b id="vol">–</b></div>
+    <div><span class="sub">Palkkio maker/taker</span><b>0 % / 0,05 %</b></div>
+  </div>
+</header>
+<main>
+  <div class="grid">
+  <section class="card"><canvas id="chart" width="900" height="420"></canvas></section>
+
+  <section class="card form">
+    <div class="tabs" id="side"><button data-s="buy" class="on buy">Osta</button><button data-s="sell" class="sell">Myy</button></div>
+    <div class="tabs small" id="type"><button data-t="limit" class="on">Rajahinta</button><button data-t="market">Markkina</button></div>
+    <form id="f">
+      <label id="lPrice">Hinta (€)<input id="price" inputmode="decimal" autocomplete="off"></label>
+      <label id="lQty">Määrä (BTC)<input id="qty" inputmode="decimal" autocomplete="off"></label>
+      <label id="lBudget" hidden>Käytettävä summa (€)<input id="budget" inputmode="decimal" autocomplete="off"></label>
+      <div id="est" class="sub"></div>
+      <button class="go buy" id="go">Osta BTC</button>
+      <div id="msg" role="status"></div>
+    </form>
+  </section>
+
+  <section class="card">
+    <h2>Saldo</h2>
+    <div class="bal"><div><span class="sub">Vapaa EUR</span><b id="eurF">–</b></div><div><span class="sub">Vapaa BTC</span><b id="btcF">–</b></div>
+    <div><span class="sub">Varattu EUR</span><b id="eurL">–</b></div><div><span class="sub">Varattu BTC</span><b id="btcL">–</b></div></div>
+    <div class="sub">Yhteensä: <b id="total">–</b> € <button class="lnk" id="reset">Aloita alusta</button></div>
+  </section>
+
+  <section class="card">
+    <h2>Tilauskirja</h2>
+    <div class="book"><div class="hd"><span>Hinta €</span><span>Määrä BTC</span></div><div id="asks"></div><div id="spread" class="spread"></div><div id="bids"></div></div>
+  </section>
+
+  <section class="card">
+    <h2>Omat avoimet tilaukset</h2>
+    <div id="open" class="sub">Ei avoimia tilauksia.</div>
+  </section>
+
+  <section class="card">
+    <h2>Viimeisimmät kaupat</h2>
+    <div id="trades" class="trades"></div>
+  </section>
+</div>
+</main>
+<footer>
+  <p>Tämä on tekninen demo. Kaupat tehdään keksityllä rahalla ja robottien kanssa, eikä sivusto ota vastaan talletuksia eikä säilytä kenenkään varoja. Hinnat ovat satunnaisia, eivät oikeita markkinahintoja. Ei sijoitusneuvontaa.</p>
+  <p>Palkkiovertailu (peruskerros, maker/taker, lähde <a href="https://tokentax.co/blog/crypto-exchange-with-lowest-fees">TokenTax 3.10.2026</a>): Binance.US 0 % / 0,02 % (vain osassa USA:ta), Bitstamp 0,30 % / 0,40 %, Kraken Pro 0,40 % / 0,80 %, Coinbase Advanced 0,50 % / 0,90 %. Demon palkkiot on asetettu näitä matalammiksi. Oikean pörssin palkkiot riippuisivat kuluista ja luvista.</p>
+  <p><a href="https://github.com/Miksu900/porssi">Lähdekoodi</a></p>
+</footer>
+<script type="module" src="app.js"></script>
+</body>
+</html>
