@@ -1,0 +1,11 @@
+{
+  "name": "porssi",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Demopörssi: kaupankäyntimoottori ja selaindemo valerahalla. Ei oikeaa rahaa.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "build": "node build.mjs"
+  }
+}
