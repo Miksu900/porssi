@@ -1,12 +1,13 @@
 import { Exchange, ExchangeError, toUnits, fmtUnits } from "../engine.mjs";
 import { createMarket } from "../bots.mjs";
+import { createAutopilot, STRATEGIES } from "../autopilot.mjs";
 
 const ME = "sina";
 const $ = (id) => document.getElementById(id);
 const EUR = (u, d = 2) => Number(fmtUnits(u, 2, d)).toLocaleString("fi-FI", { minimumFractionDigits: d, maximumFractionDigits: d });
 const BTCf = (u, d = 4) => fmtUnits(u, 8, d).replace(".", ",");
 
-let ex, mkt, series = [], side = "buy", type = "limit";
+let auto = null, ex, mkt, series = [], side = "buy", type = "limit";
 
 // tallentaa jokaisesta kierroksesta hinnan ja kierroksen volyymin (kynttilöitä varten)
 function record(seen) {
@@ -21,6 +22,7 @@ function record(seen) {
 let seenId = 0, startValue = 0;
 
 function start() {
+  auto = null;
   ex = new Exchange({ makerFeeBps: 0n, takerFeeBps: 5n });
   mkt = createMarket(ex, { start: 60000 });
   series = [];
@@ -181,6 +183,7 @@ $("reset").addEventListener("click", () => { start(); msg("Aloitettu alusta: 10 
 
 $("f").addEventListener("submit", (e) => {
   e.preventDefault();
+  if (auto) return msg("Robotti hoitaa kaupat. Pysäytä robotti ensin.");
   try {
     const o = { acct: ME, side, type };
     if (type === "limit") { o.price = parse("price", 2); o.qty = parse("qty", 8); }
@@ -197,8 +200,57 @@ $("f").addEventListener("submit", (e) => {
 
 setInterval(() => {
   mkt.tick();
+  if (auto) auto.tick();
   seenId = record(seenId);
   render();
 }, 1500);
 
 start();
+
+// ---- robotti ----
+const num = (id) => Number($(id).value.replace(",", "."));
+function setMode(m) {
+  document.querySelectorAll("#mode button").forEach((b) => b.classList.toggle("on", b.dataset.m === m));
+  $("manual").hidden = m !== "manual";
+  $("robot").hidden = m !== "robot";
+  if (m === "robot") stratChange();
+}
+function stratChange() {
+  const s = $("strat").value;
+  $("sdesc").textContent = STRATEGIES[s].desc;
+  $("p-dca").hidden = s !== "dca";
+  $("p-range").hidden = s !== "range";
+  if (s === "range" && !$("r-buy").value && ex.lastPrice) {
+    const p = Number(ex.lastPrice) / 100;
+    $("r-buy").value = Math.round(p * 0.99);
+    $("r-sell").value = Math.round(p * 1.01);
+  }
+}
+function robotUi() {
+  $("rgo").textContent = auto ? "Pysäytä robotti" : "Käynnistä robotti";
+  $("rgo").className = "go" + (auto ? " sell" : "");
+  $("rstat").textContent = auto ? `Käynnissä: ${STRATEGIES[auto.strategy].name}` : "Pysäytetty.";
+  $("rlog").innerHTML = auto ? auto.log.map((l) => `<div>${l.replace(/</g, "&lt;")}</div>`).join("") : "";
+}
+document.addEventListener("click", (e) => {
+  const mb = e.target.closest("#mode button");
+  if (mb) setMode(mb.dataset.m);
+});
+$("strat").addEventListener("change", stratChange);
+$("rgo").addEventListener("click", () => {
+  if (auto) { auto = null; return robotUi(); }
+  const s = $("strat").value;
+  let params = {};
+  if (s === "dca") {
+    const eur = num("d-eur"), sec = num("d-sec");
+    if (!(eur >= 1) || !(sec >= 3)) { $("rstat").textContent = "Tarkista: summa vähintään 1 € ja väli vähintään 3 s."; return; }
+    params = { euros: eur, everyTicks: Math.max(1, Math.round(sec / 1.5)) };
+  } else if (s === "range") {
+    const bb = num("r-buy"), sa = num("r-sell"), eur = num("r-eur"), fr = num("r-frac");
+    if (!(bb > 0) || !(sa > bb) || !(eur >= 1) || !(fr > 0 && fr <= 100)) { $("rstat").textContent = "Tarkista luvut: myyntiraja pitää olla ostorajaa suurempi."; return; }
+    params = { buyBelow: bb, sellAbove: sa, euros: eur, sellFraction: fr / 100, cooldownTicks: 5 };
+  }
+  auto = createAutopilot(ex, ME, s, params);
+  robotUi();
+});
+setInterval(() => auto && robotUi(), 1500);

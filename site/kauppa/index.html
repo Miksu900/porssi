@@ -25,6 +25,8 @@
   <section class="card"><canvas id="chart" width="900" height="420"></canvas></section>
 
   <section class="card form">
+    <div class="tabs small" id="mode"><button data-m="manual" class="on">Teen kaupat itse</button><button data-m="robot">Robotti hoitaa</button></div>
+    <div id="manual">
     <div class="tabs" id="side"><button data-s="buy" class="on buy">Osta</button><button data-s="sell" class="sell">Myy</button></div>
     <div class="tabs small" id="type"><button data-t="limit" class="on">Rajahinta</button><button data-t="market">Markkina</button></div>
     <form id="f">
@@ -35,6 +37,26 @@
       <button class="go buy" id="go">Osta BTC</button>
       <div id="msg" role="status"></div>
     </form>
+  </div>
+    <div id="robot" hidden>
+      <label>Strategia
+        <select id="strat"><option value="dca">Säännöllinen ostaminen</option><option value="range">Hintarajat</option><option value="hold">Osta ja pidä (ei kauppoja)</option></select>
+      </label>
+      <p class="sub" id="sdesc"></p>
+      <div id="p-dca">
+        <label>Osta aina (€)<input id="d-eur" inputmode="decimal" value="200"></label>
+        <label>Väli (sekuntia)<input id="d-sec" inputmode="numeric" value="15"></label>
+      </div>
+      <div id="p-range" hidden>
+        <label>Osta, kun hinta alle (€)<input id="r-buy" inputmode="decimal"></label>
+        <label>Myy osa, kun hinta yli (€)<input id="r-sell" inputmode="decimal"></label>
+        <label>Oston koko (€)<input id="r-eur" inputmode="decimal" value="500"></label>
+        <label>Myytävä osuus (%)<input id="r-frac" inputmode="numeric" value="25"></label>
+      </div>
+      <button class="go" id="rgo" type="button">Käynnistä robotti</button>
+      <div id="rstat" class="sub"></div>
+      <div id="rlog" class="rlog"></div>
+    </div>
   </section>
 
   <section class="card">
