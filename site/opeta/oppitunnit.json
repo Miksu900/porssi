@@ -45,6 +45,44 @@
     "Ostotarjoukset alhaalla, myyntitarjoukset ylhäällä",
     "Hintaero on piilokulu",
     "Iso tilaus liikuttaa hintaa ohuessa kirjassa"
+   ],
+   "syva": [
+    {
+     "h": "Hintaero on kauppasi hinta",
+     "p": [
+      "Jos matalin myyntihinta on 60 000 € ja korkein ostohinta 59 940 €, hintaero on 60 €, eli 0,1 %. Jos ostat ja myyt heti markkinatilauksilla, menetät tämän ennen palkkioita. Mitä enemmän kauppoja teet, sitä enemmän hintaero maksaa."
+     ]
+    },
+    {
+     "h": "Läpileikkaus: iso tilaus syö kirjaa",
+     "p": [
+      "Oletetaan, että myyntipuolella on 0,5 BTC hintaan 60 000, 0,5 BTC hintaan 60 100 ja 1 BTC hintaan 60 300. Markkinaosto 1 BTC maksaa 30 000 + 30 050 = 60 050 €, eli keskihinta on 60 050, 50 euroa parasta hintaa korkeampi (0,08 %). Osto 2 BTC maksaa 120 350 €, keskihinta 60 175 (0,29 % yli parhaan). Tätä eroa kutsutaan liukumaksi (slippage). Ohuessa kirjassa se kasvaa nopeasti."
+     ]
+    },
+    {
+     "h": "Mitä kirjasta voi päätellä",
+     "p": [
+      "Jos ostopuolella on paljon enemmän määrää kuin myyntipuolella, paine näyttää nousevalta, ja päinvastoin. Älä kuitenkaan luota tähän yksin: tilaukset voi perua milloin tahansa, ja suuret 'seinät' katoavat usein, kun hinta lähestyy niitä."
+     ]
+    },
+    {
+     "h": "Käytännön vinkit",
+     "p": [],
+     "ul": [
+      "Katso ennen isoa markkinatilausta, kuinka monta tasoa se syö",
+      "Käytä rajatilausta, kun et ole kiireessä",
+      "Vertaa hintaeroa ja palkkiota, kun valitset pörssiä tai paria"
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Kuinka suuri on hintaero prosentteina?",
+      "Kuinka syvä kirja on omalla tilauskoollani?",
+      "Onko liukuma kauppani kokoon nähden hyväksyttävä?"
+     ]
+    }
    ]
   },
   {
@@ -77,6 +115,41 @@
     "Markkina: varma toteutuminen, epävarma hinta",
     "Raja: varma hinta, epävarma toteutuminen",
     "Maker- ja taker-palkkio voivat erota"
+   ],
+   "syva": [
+    {
+     "h": "Rajatilaus: odotuksen hinta",
+     "p": [
+      "Rajatilauksella voit saada paremman hinnan ja pienemmän palkkion, mutta maksat siitä riskillä, ettei kauppa toteudu. Jos hinta ei koskaan palaa tasollesi ja markkina karkaa, jäät ilman. Markkinatilauksella maksat varmuudesta hintaerolla ja mahdollisella liukumalla."
+     ]
+    },
+    {
+     "h": "Osittaiset täytöt",
+     "p": [
+      "Rajatilaus voi toteutua vain osaksi. Silloin osa määrästä jää kirjaan odottamaan. Seuraa avoimia tilauksia ja päätä, perutko jäljelle jääneen osan."
+     ]
+    },
+    {
+     "h": "Milloin kumpaakin",
+     "p": [
+      "Käytä markkinatilausta, kun nopeus on tärkeämpää kuin hinta: esimerkiksi tappiorajan toteutus tai nopea liike. Käytä rajatilausta, kun sinulla on selvä hintatavoite tai kun kirja on ohut ja liukuma voisi olla suuri."
+     ]
+    },
+    {
+     "h": "Tappioraja ja liukuma",
+     "p": [
+      "Tappioraja, joka toteutuu markkinatilauksena, toteutuu parhaaseen saatavilla olevaan hintaan, ei välttämättä rajan hintaan. Nopeassa liikkeessä toteutunut hinta voi olla selvästi huonompi."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Kuinka tärkeää on, että kauppa toteutuu?",
+      "Kuinka suuri liukuma olisi?",
+      "Onko palkkioero maker- ja taker-tilauksen välillä merkityksellinen?"
+     ]
+    }
    ]
   },
   {
@@ -109,6 +182,40 @@
     "Vähän kauppoja, vähän kuluja",
     "Vaatii pitkää pinnaa",
     "Ei takuuta tuotosta"
+   ],
+   "strategia": "hold",
+   "syva": [
+    {
+     "h": "Milloin se toimii",
+     "p": [
+      "Osta ja pidä toimii parhaiten, kun omaisuuden hinta on pitkällä aikavälillä noussut ja pystyt pitämään kiinni sijoituksesta myös laskujen aikana. Se sopii, kun et halua tai ehdi seurata markkinaa, ja se pitää kulut pieninä, koska kauppoja on vähän."
+     ]
+    },
+    {
+     "h": "Milloin se ei toimi",
+     "p": [
+      "Strategia ei suojaa mitenkään laskulta. Alla olevasta taulukosta näet, että keksityssä laskevassa markkinassa ja romahduksessa osta ja pidä kärsii suurimmat tappiot ja suurimman pudotuksen huipulta."
+     ]
+    },
+    {
+     "h": "Tärkein luku: suurin pudotus",
+     "p": [
+      "Suurin pudotus (max drawdown) kertoo, kuinka paljon arvo putosi huipulta pohjaan. Se on tärkeämpi kuin keskimääräinen tuotto, koska se kertoo, mitä sinun pitää kestää.",
+      "Tappion korjaaminen vaatii aina suuremman prosentin kuin tappio: 10 % lasku vaatii 11 % nousun, 30 % lasku 43 %, 50 % lasku 100 % ja 70 % lasku jopa 233 %. Syy on se, että nousu lasketaan pienemmästä pohjasta."
+     ]
+    },
+    {
+     "h": "Kysy ennen ostoa",
+     "p": [
+      "Kuinka suuren pudotuksen kestän myymättä? Onko rahalle muuta käyttöä seuraavan kahden vuoden aikana? Jos 50 % lasku pakottaisi myymään, sijoitus on liian suuri tai aikajänne liian lyhyt."
+     ]
+    },
+    {
+     "h": "Yhdistäminen",
+     "p": [
+      "Yleinen tapa on pitää osa salkusta pitkäaikaisessa ydinsijoituksessa ja käyttää vain pientä osaa aktiiviseen kaupankäyntiin. Näin voit oppia treidaamaan ilman, että virheet vaarantavat koko salkkua."
+     ]
+    }
    ]
   },
   {
@@ -135,6 +242,38 @@
     "Sama summa säännöllisesti",
     "Tasoittaa ajoitusriskiä",
     "Ei takaa voittoa"
+   ],
+   "syva": [
+    {
+     "h": "Mitä keskihinnalle tapahtuu",
+     "p": [
+      "Oletetaan, että ostat 100 eurolla kolme kertaa, kun hinta on 100, 80 ja 125. Saat 1 + 1,25 + 0,8 = 3,05 yksikköä 300 eurolla, eli keskihinta on 98,36. Hintojen tavallinen keskiarvo on 101,67. Säännöllinen osto antaa aina keskihinnan, joka on enintään hintojen keskiarvo, koska ostat enemmän yksiköitä halvalla."
+     ]
+    },
+    {
+     "h": "Kertasijoitus vai säännöllinen osto",
+     "p": [
+      "Ei ole yleistä voittajaa. Jos hinta nousee tasaisesti, kertasijoitus on parempi, koska raha on markkinassa pidempään. Jos hinta laskee ensin, säännöllinen osto voittaa. Säännöllinen osto ei ole tuottostrategia vaan ajoitusriskin vähentäjä: se pienentää riskiä sijoittaa kaikki huonoimpaan mahdolliseen hetkeen."
+     ]
+    },
+    {
+     "h": "Mitä se ei tee",
+     "p": [
+      "Se ei suojaa pitkältä laskulta. Jos hinta laskee jatkuvasti, ostat koko ajan laskevaa omaisuutta ja tappio kasvaa. Se ei myöskään kerro, onko omaisuus ostamisen arvoinen."
+     ]
+    },
+    {
+     "h": "Kulut",
+     "p": [
+      "Jokainen osto maksaa palkkion ja hintaeron. Pieni summa tiheästi ostettuna voi syödä kulujen takia merkittävän osan sijoituksesta. Laske palkkio prosentteina jokaisesta erästä ja valitse väli, jossa kulut pysyvät pieninä."
+     ]
+    },
+    {
+     "h": "Hyvä käytäntö",
+     "p": [
+      "Päätä summa ja väli etukäteen, automatisoi osto ja älä muuta sääntöjä jokaisen hinnanvaihtelun jälkeen. Päätä myös etukäteen, milloin lopetat tai myyt: aikataulun, tavoitesumman tai elämäntilanteen perusteella."
+     ]
+    }
    ]
   },
   {
@@ -171,6 +310,73 @@
    "lahteet": [
     "capital",
     "trendspider"
+   ],
+   "strategia": "ma",
+   "kaaviot": [
+    {
+     "scenario": "nousu",
+     "seed": 4,
+     "overlays": [
+      "sma10",
+      "sma40"
+     ],
+     "caption": "Nouseva markkina (keksitty data): leikkaus antaa signaalin ja pitää sinut mukana trendissä."
+    },
+    {
+     "scenario": "sivuttain",
+     "seed": 3,
+     "overlays": [
+      "sma10",
+      "sma40"
+     ],
+     "caption": "Sivuttaismarkkina (keksitty data): keskiarvot leikkaavat toistuvasti ja jokainen kauppa maksaa palkkion."
+    }
+   ],
+   "syva": [
+    {
+     "h": "Milloin se toimii",
+     "p": [
+      "Trendinseuranta toimii, kun hinta liikkuu pitkään samaan suuntaan. Taulukosta näet, että nousevassa markkinassa se pysyy mukana, ja laskevassa tai romahduksessa se vie sinut pois markkinasta ennen suurinta pudotusta. Sen vahvuus on tappioiden rajaaminen, ei täydellinen ajoitus."
+     ]
+    },
+    {
+     "h": "Milloin se ei toimi",
+     "p": [
+      "Sivuttaismarkkinassa nopea ja hidas keskiarvo leikkaavat toistuvasti. Jokainen leikkaus on väärä hälytys: ostat ylhäältä, myyt alhaalta ja maksat palkkion. Taulukosta näet, että sivuttaismarkkinassa kauppoja on paljon ja tulos on heikko."
+     ]
+    },
+    {
+     "h": "Jaksojen valinta",
+     "p": [
+      "Lyhyt keskiarvo reagoi nopeasti mutta antaa enemmän vääriä signaaleja. Pitkä keskiarvo on rauhallisempi mutta myöhässä. Jaksojen väli vaikuttaa kauppojen määrään: mitä lähempänä keskiarvot ovat toisiaan, sitä useammin ne leikkaavat. Jokainen valinta on kompromissi viiveen ja väärien signaalien välillä."
+     ]
+    },
+    {
+     "h": "Parannuskeinoja",
+     "p": [],
+     "ul": [
+      "Vaadi, että leikkaus pysyy voimassa useamman hintapisteen ennen kuin toimit",
+      "Osta vain, jos hinta on myös pitkän keskiarvon yläpuolella",
+      "Vahvista signaali volyymilla: aito liike kulkee usein suuremman volyymin kanssa",
+      "Pidä tappioraja hintakaaviosta riippumatta"
+     ]
+    },
+    {
+     "h": "Tyypillisiä virheitä",
+     "p": [
+      "Jaksojen jatkuva säätäminen, kunnes strategia näyttää hyvältä menneessä datassa (ylisovittaminen). Strategian vaihtaminen kesken tappioputken. Kaupankäynti sivuttaismarkkinassa ilman, että tunnistat tilannetta."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Onko markkina selvässä trendissä? (katso oppitunti markkinatilan tunnistamisesta)",
+      "Kuinka suuri on tappioraja?",
+      "Kuinka monta kauppaa tämä strategia tekee ja paljonko ne maksavat palkkioina?",
+      "Onko minulla suunnitelma, jos signaali tulee myöhässä?"
+     ]
+    }
    ]
   },
   {
@@ -205,6 +411,69 @@
    ],
    "lahteet": [
     "tradeideas"
+   ],
+   "strategia": "meanrev",
+   "kaaviot": [
+    {
+     "scenario": "sivuttain",
+     "seed": 5,
+     "overlays": [
+      "sma20",
+      "band20"
+     ],
+     "caption": "Sivuttaismarkkina (keksitty data): osto, kun hinta on 2 % keskiarvon alla, myynti kun se palaa keskiarvoon."
+    },
+    {
+     "scenario": "romahdus",
+     "seed": 2,
+     "overlays": [
+      "sma20",
+      "band20"
+     ],
+     "caption": "Romahdus (keksitty data): hinta ei palaa keskiarvoon, ja strategia ostaa putoavaa hintaa."
+    }
+   ],
+   "syva": [
+    {
+     "h": "Milloin se toimii",
+     "p": [
+      "Strategia toimii, kun hinta vaihtelee tasaisesti alueen sisällä, esimerkiksi sivuttaismarkkinassa. Taulukosta näet, että sivuttaismarkkinassa tuotto on pieni mutta positiivinen ja pudotus pieni."
+     ]
+    },
+    {
+     "h": "Milloin se ei toimi",
+     "p": [
+      "Voimakkaassa laskussa ja romahduksessa hinta ei palaa keskiarvoon, ja strategia ostaa koko ajan alempaa. Taulukosta näet, että romahduksessa strategia voi tehdä huonomman tuloksen kuin osta ja pidä. Englanniksi tästä käytetään sanontaa putoavan veitsen kiinniottaminen."
+     ]
+    },
+    {
+     "h": "Miksi tappioraja on pakollinen",
+     "p": [
+      "Tässä strategiassa riski on epäsymmetrinen: voitto on pieni (paluu keskiarvoon), mutta tappio voi olla suuri, jos trendi vaihtuu. Ilman tappiorajaa yksi huono kauppa voi pyyhkiä pois monta pientä voittoa."
+     ]
+    },
+    {
+     "h": "Parametrit",
+     "p": [
+      "Poikkeaman suuruus ratkaisee kauppojen määrän: pieni poikkeama antaa paljon kauppoja ja paljon kohinaa, suuri poikkeama harvoja mutta luotettavampia signaaleja. Keskiarvon jakso määrittää, mihin 'normaalilla tasolla' viitataan."
+     ]
+    },
+    {
+     "h": "Yhdistäminen",
+     "p": [
+      "Käytä keskiarvoon palautumista vain, kun olet tunnistanut markkinan sivuttaiseksi. Voit myös vaatia, että hinta on pitkän keskiarvon yläpuolella, jolloin ostat laskuja vain nousutrendissä. Tämä on yhdistelmästrategian perusidea."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Onko markkina sivuttainen vai trendaavassa tilassa?",
+      "Missä on tappioraja, jos hinta ei palaa?",
+      "Kuinka suuri osa salkusta menee yhteen kauppaan?",
+      "Onko tavoite realistinen: paluu keskiarvoon, ei enempää?"
+     ]
+    }
    ]
   },
   {
@@ -239,6 +508,68 @@
    ],
    "lahteet": [
     "tradeideas"
+   ],
+   "strategia": "breakout",
+   "kaaviot": [
+    {
+     "scenario": "lapimurto",
+     "seed": 3,
+     "overlays": [
+      "high30"
+     ],
+     "levels": "range",
+     "caption": "Pitkä tasainen jakso ja läpimurto (keksitty data): osto, kun hinta ylittää 30 pisteen ylärajan."
+    },
+    {
+     "scenario": "sivuttain",
+     "seed": 6,
+     "overlays": [
+      "high30"
+     ],
+     "caption": "Sivuttaismarkkina (keksitty data): hinta ylittää ylärajan hetkeksi ja palaa takaisin, eli läpimurto on väärä."
+    }
+   ],
+   "syva": [
+    {
+     "h": "Milloin se toimii",
+     "p": [
+      "Läpimurto toimii, kun rauhallista jaksoa seuraa selvä liike. Taulukosta näet, että romahduksessa ja läpimurtomarkkinassa strategian poistumissääntö (myynti, kun hinta alittaa alarajan) suojaa merkittävältä osalta pudotusta."
+     ]
+    },
+    {
+     "h": "Milloin se ei toimi",
+     "p": [
+      "Sivuttaismarkkinassa hinta ylittää ylärajan hetkeksi ja palaa takaisin. Silloin ostat ylhäältä ja myyt alhaalta, ja tulos on heikko. Tätä kutsutaan vääräksi läpimurroksi."
+     ]
+    },
+    {
+     "h": "Vahvistus",
+     "p": [
+      "Aito läpimurto kulkee usein suuremman volyymin kanssa. Jos hinta ylittää tason vähäisellä volyymilla, signaali on epäluotettavampi. Toinen tapa on odottaa, että hinta pysyy tason yläpuolella tietyn ajan ennen kuin ostat, mikä vähentää vääriä läpimurtoja mutta tarkoittaa myöhäisempää ostoa."
+     ]
+    },
+    {
+     "h": "Tappioraja",
+     "p": [
+      "Luonteva tappioraja on juuri murretun tason alapuolella: jos hinta palaa sen alle, läpimurto epäonnistui ja luovut positiosta pienellä tappiolla."
+     ]
+    },
+    {
+     "h": "Parametrit",
+     "p": [
+      "Ikkunan pituus ratkaisee, kuinka merkittävä taso on. Pitkä ikkuna antaa harvoja ja merkittävämpiä signaaleja, lyhyt paljon kohinaa. Poistumissääntö voi olla lyhyempi ikkuna kuin sisäänmeno, jotta pääset pois nopeammin kuin tulit."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Kuinka pitkä rauhallinen jakso läpimurtoa edelsi?",
+      "Oliko volyymi tavallista suurempi?",
+      "Missä on tappioraja suhteessa murrettuun tasoon?",
+      "Mikä on riski suhteessa mahdolliseen voittoon?"
+     ]
+    }
    ]
   },
   {
@@ -266,7 +597,335 @@
     "Yli 70 yliostettu, alle 30 ylimyyty (nyrkkisääntö)",
     "Toimii parhaiten vahvistuksena"
    ],
-   "lahteet": []
+   "lahteet": [],
+   "strategia": "rsi",
+   "kaaviot": [
+    {
+     "scenario": "sivuttain",
+     "seed": 8,
+     "overlays": [],
+     "rsi": 14,
+     "caption": "Sivuttaismarkkina (keksitty data): osto, kun RSI on alle 30, ja myynti, kun se on yli 70."
+    },
+    {
+     "scenario": "nousu",
+     "seed": 6,
+     "overlays": [],
+     "rsi": 14,
+     "caption": "Nouseva markkina (keksitty data): RSI harvoin laskee alle 30, joten strategia tekee vähän kauppoja ja jättää suuren osan noususta väliin."
+    }
+   ],
+   "syva": [
+    {
+     "h": "Milloin se toimii",
+     "p": [
+      "RSI-strategia toimii parhaiten sivuttaismarkkinassa, jossa hinta heiluu rajojen välillä. Taulukosta näet, että sivuttaismarkkinassa tulos on positiivinen ja pudotus pieni."
+     ]
+    },
+    {
+     "h": "Milloin se ei toimi",
+     "p": [
+      "Voimakkaassa nousussa RSI pysyy korkealla eikä laske ostorajalle, joten strategia on useimmiten rahassa ja jättää nousun väliin. Voimakkaassa laskussa RSI on toistuvasti alle 30, ja strategia ostaa alenevaan hintaan. Matala RSI ei siis tarkoita halpaa, vaan että hinta on laskenut nopeasti."
+     ]
+    },
+    {
+     "h": "Rajat eivät ole lakeja",
+     "p": [
+      "Rajat 30 ja 70 ovat yleisimmin käytetyt, mutta ne eivät ole luonnonlakeja. Voimakkaassa trendissä käytetään joskus eri rajoja, esimerkiksi ostoraja 40 nousutrendissä. Jokainen raja on valinta, jonka vaikutus pitää testata."
+     ]
+    },
+    {
+     "h": "RSI parhaiten yhdistettynä",
+     "p": [
+      "RSI yksin on heikko päätöksentekijä. Hyödyllisempi se on vahvistajana: osta RSI:n laskuun vain, kun suurempi trendi on nouseva. Tämä on yhdistelmästrategian perusajatus."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Onko markkina sivuttainen vai selvästi trendaava?",
+      "Mikä on suurempi trendi RSI-signaalin taustalla?",
+      "Missä on tappioraja, jos RSI pysyy matalana?"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "tuki-ja-vastustasot",
+   "title": "Tuki- ja vastustasot",
+   "lead": "Hinnat pysähtyvät ja kääntyvät usein samoilla tasoilla. Niiden tunnistaminen auttaa valitsemaan sisäänmenon ja tappiorajan.",
+   "sections": [
+    {
+     "h": "Mitä ne ovat",
+     "p": [
+      "Tukitaso on hinta, jonka kohdalla lasku on aiemmin pysähtynyt, koska ostajia on ollut paljon. Vastustaso on hinta, jonka kohdalla nousu on aiemmin pysähtynyt, koska myyjiä on ollut paljon."
+     ]
+    },
+    {
+     "h": "Miten ne löytää",
+     "p": [
+      "Katso kaaviosta aiempia huippuja ja pohjia, joissa hinta on kääntynyt useammin kuin kerran. Pyöreät luvut, kuten 50 000 tai 60 000, toimivat usein psykologisina tasoina, koska moni asettaa tilauksia niihin."
+     ]
+    },
+    {
+     "h": "Roolin vaihtuminen",
+     "p": [
+      "Kun hinta murtaa vastustason ylöspäin, vanha vastus muuttuu usein uudeksi tueksi, ja päinvastoin. Tämä on yleinen havainto, ei laki."
+     ]
+    }
+   ],
+   "syva": [
+    {
+     "h": "Käytä tasoja suunnitelmassa",
+     "p": [
+      "Tasot antavat luontevan paikan tappiorajalle ja tavoitteelle. Osto tuen lähellä ja tappioraja heti tuen alapuolella antaa pienen riskin suhteessa mahdolliseen voittoon, koska jos tuki murtuu, tiedät olleesi väärässä."
+     ]
+    },
+    {
+     "h": "Tasot ovat alueita, eivät viivoja",
+     "p": [
+      "Hinta ei käänny täsmälleen samalla hinnalla. Ajattele tasoa vyöhykkeenä, jonka leveys on muutaman prosentin luokkaa. Tappiorajan asettaminen täsmälleen tason kohdalle johtaa helposti turhiin pysäytyksiin."
+     ]
+    },
+    {
+     "h": "Väärät läpimurrot",
+     "p": [
+      "Hinta voi hetkeksi ylittää vastustason ja palata takaisin. Siksi läpimurtoa vahvistetaan usein volyymilla tai odottamalla, että hinta pysyy tason ylä- tai alapuolella tietyn ajan."
+     ]
+    },
+    {
+     "h": "Rajoitukset",
+     "p": [
+      "Tasojen piirtäminen on osin subjektiivista: kaksi ihmistä voi piirtää eri tasot samaan kaavioon. Mitä useammin taso on pitänyt ja mitä pidemmältä ajalta, sitä merkittävämpänä sitä pidetään, mutta mikään taso ei takaa käännettä."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Kuinka monta kertaa hinta on kääntynyt tällä tasolla?",
+      "Kuinka pitkältä ajalta tasot ovat peräisin?",
+      "Missä tappioraja on suhteessa tasoon?",
+      "Mikä on riski suhteessa mahdolliseen voittoon?"
+     ]
+    }
+   ],
+   "kokeile": "Etsi demon kaaviosta kaksi tasoa, joilla hinta on kääntynyt. Tee osto tason lähellä ja aseta tappioraja sen alapuolelle.",
+   "avain": [
+    "Tuki: ostajia, vastus: myyjiä",
+    "Tasot ovat vyöhykkeitä",
+    "Tappioraja tason toiselle puolelle"
+   ],
+   "lahteet": [],
+   "kaaviot": [
+    {
+     "scenario": "lapimurto",
+     "seed": 3,
+     "overlays": [],
+     "levels": "range",
+     "caption": "Keksitty data: vaakaviiva on pitkän tasaisen jakson yläraja. Kun hinta ylittää sen, vanha vastus muuttuu tueksi."
+    }
+   ]
+  },
+  {
+   "slug": "volyymi",
+   "title": "Volyymi",
+   "lead": "Hinta kertoo, mihin suuntaan markkina liikkuu. Volyymi kertoo, kuinka moni on mukana.",
+   "sections": [
+    {
+     "h": "Mitä volyymi on",
+     "p": [
+      "Volyymi on tietyn ajan aikana kaupattu määrä. Suuri volyymi tarkoittaa, että liikkeessä on mukana paljon osapuolia."
+     ]
+    },
+    {
+     "h": "Mitä sillä tehdään",
+     "p": [
+      "Liike, johon liittyy suuri volyymi, on yleensä uskottavampi kuin liike pienellä volyymilla. Läpimurtoa vahvistetaan usein volyymilla."
+     ]
+    }
+   ],
+   "syva": [
+    {
+     "h": "Läpimurron vahvistus",
+     "p": [
+      "Jos hinta ylittää vastustason ja volyymi on selvästi tavallista suurempi, läpimurto on uskottavampi. Jos volyymi on pieni, läpimurto voi olla väärä. Katso, miten volyymi muuttuu läpimurron hetkellä."
+     ]
+    },
+    {
+     "h": "Trendin terveys",
+     "p": [
+      "Terveessä nousutrendissä volyymi kasvaa yleensä nousuissa ja pienenee korjausliikkeissä. Jos hinta nousee mutta volyymi vähenee, liike voi olla heikkenemässä. Tämä on varoitusmerkki, ei myyntisignaali."
+     ]
+    },
+    {
+     "h": "Rajoitukset",
+     "p": [
+      "Volyymin luotettavuus vaihtelee pörsseittäin, joten tarkista, mistä volyymilukema tulee. Yksittäinen volyymipiikki voi johtua yhdestä suuresta tilauksesta. Volyymi kertoo määrän, ei suuntaa: suuri volyymi on yhtä lailla mahdollinen laskussa kuin nousussa."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Onko volyymi selvästi tavallista suurempi signaalin aikana?",
+      "Mistä volyymitieto tulee?",
+      "Vahvistaako volyymi hinnan suunnan vai onko se ristiriidassa sen kanssa?"
+     ]
+    }
+   ],
+   "kokeile": "Katso demon kaaviossa hinnan alla olevia volyymipalkkeja. Mitkä hinnanliikkeet toteutuivat suurella volyymilla?",
+   "avain": [
+    "Suuri volyymi tukee liikettä",
+    "Hinnan nousu ja volyymin lasku: varoitusmerkki",
+    "Volyymin lähde pitää tarkistaa"
+   ],
+   "lahteet": [],
+   "kaaviot": [
+    {
+     "scenario": "lapimurto",
+     "seed": 3,
+     "overlays": [],
+     "vol": true,
+     "caption": "Keksitty data: läpimurron aikana volyymi on selvästi tavallista suurempi."
+    }
+   ]
+  },
+  {
+   "slug": "markkinatilan-tunnistus",
+   "title": "Onko markkina trendissä vai sivuttain?",
+   "lead": "Strategian valinta riippuu ensin markkinatilasta. Väärä strategia väärässä markkinassa on yleisin syy tappioihin.",
+   "sections": [
+    {
+     "h": "Kaksi perustilaa",
+     "p": [
+      "Trendissä hinta liikkuu pitkään samaan suuntaan. Sivuttaismarkkinassa hinta vaihtelee alueen sisällä ilman selkeää suuntaa. Trendinseuranta toimii trendissä ja keskiarvoon palautuminen sivuttain."
+     ]
+    },
+    {
+     "h": "Yksinkertainen mittari",
+     "p": [
+      "Efektiivisuussuhde vertaa nettoliikettä kokonaisliikkeeseen valitulla ajalla. Arvo lähellä 1 tarkoittaa lähes suoraa liikettä, ja arvo lähellä 0 tarkoittaa paljon edestakaista heilumista."
+     ]
+    }
+   ],
+   "syva": [
+    {
+     "h": "Mittarin lukeminen",
+     "p": [
+      "Alla olevassa taulukossa on keksityn datan keskimääräinen 20 pisteen efektiivisuussuhde eri markkinatilanteissa. Huomaa, että sivuttaismarkkinassa arvo on selvästi pienempi kuin selkeässä trendissä. Rajat ovat tämän demon datasta, eivät yleisiä sääntöjä."
+     ]
+    },
+    {
+     "h": "Muita tapoja",
+     "p": [],
+     "ul": [
+      "Katso, onko hinta pitkän keskiarvon ylä- vai alapuolella ja mihin suuntaan keskiarvo kallistuu",
+      "Katso, ovatko huiput ja pohjat nousevia (trendi) vai samalla korkeudella (sivuttain)",
+      "Katso hinta-alueen leveyttä: kapea alue viittaa sivuttaismarkkinaan"
+     ]
+    },
+    {
+     "h": "Tilanne muuttuu",
+     "p": [
+      "Markkina voi vaihtaa tilaa. Pitkä sivuttaisjakso päättyy usein läpimurtoon, ja trendi päättyy usein sivuttaisjaksoon. Siksi strategioiden yhdistäminen ja tilan jatkuva seuranta on tärkeää."
+     ]
+    },
+    {
+     "h": "Virheet",
+     "p": [],
+     "ul": [
+      "Käytetään trendistrategiaa sivuttain ja maksetaan väärien signaalien palkkiot",
+      "Käytetään palautumisstrategiaa trendissä ja ostetaan putoavaa hintaa",
+      "Päätellään tila vasta, kun se on jo vaihtunut"
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Mikä on markkinatila juuri nyt?",
+      "Kuinka varma olen siitä?",
+      "Sopiiko valitsemani strategia tähän tilaan?"
+     ]
+    }
+   ],
+   "kokeile": "Katso demon kaaviota ja arvioi, onko markkina trendissä vai sivuttain. Valitse sen mukaan robotti ja vertaa tulosta.",
+   "avain": [
+    "Trendi: trendinseuranta, sivuttain: palautuminen",
+    "Efektiivisuussuhde kertoo trendin voimakkuudesta",
+    "Markkinatila vaihtuu"
+   ],
+   "lahteet": [],
+   "er": true
+  },
+  {
+   "slug": "strategioiden-yhdistaminen",
+   "title": "Strategioiden yhdistäminen",
+   "lead": "Yksi sääntö on harvoin tarpeeksi. Yhdistämällä signaaleja voit vähentää vääriä hälytyksiä, mutta jokainen lisäsääntö maksaa jotain.",
+   "sections": [
+    {
+     "h": "Perusajatus",
+     "p": [
+      "Yhdistelmästrategiassa yksi sääntö määrää suunnan ja toinen ajoituksen. Esimerkiksi: osta vain, jos hinta on pitkän keskiarvon yläpuolella (trendisuodatin) ja RSI on alhaalla (lasku nousutrendissä)."
+     ]
+    },
+    {
+     "h": "Miksi se auttaa",
+     "p": [
+      "Trendisuodatin estää keskiarvoon palautumisen ja RSI:n pahimman virheen, eli putoavan hinnan ostamisen. Samalla signaaleja tulee harvemmin."
+     ]
+    }
+   ],
+   "syva": [
+    {
+     "h": "Mitä taulukosta näkee",
+     "p": [
+      "Alla on yhdistelmästrategia verrattuna osta ja pidä -strategiaan ja yksittäisiin strategioihin. Huomaa kaksi asiaa: yhdistelmä pienentää pudotuksia erityisesti laskussa ja romahduksessa, mutta nousevassa markkinassa se jättää suuren osan noususta väliin. Suojaus maksaa tuotosta."
+     ]
+    },
+    {
+     "h": "Neljä yhdistämistapaa",
+     "p": [],
+     "ul": [
+      "Trendisuodatin ja ajoitus: suuri suunta määrää, pieni signaali ajoittaa",
+      "Vahvistus: toimi vain, kun kaksi eri signaalia (esimerkiksi hinta ja volyymi) ovat samaa mieltä",
+      "Tilanvaihtaja: käytä trendistrategiaa trendissä ja palautumisstrategiaa sivuttain, tilan mittarina esimerkiksi efektiivisuussuhde",
+      "Hajautus: aja kahta tai useampaa strategiaa, jotka eivät epäonnistu samassa tilanteessa"
+     ]
+    },
+    {
+     "h": "Ylisovittamisen vaara",
+     "p": [
+      "Jokainen lisäsääntö ja parametri lisää mahdollisuutta, että sovitat strategian menneeseen dataan. Strategia, joka on virittämällä saatu näyttämään täydelliseltä menneessä, pettää todennäköisesti tulevassa. Pidä säännöt yksinkertaisina ja testaa eri markkinatilanteissa, älä yhdellä jaksolla."
+     ]
+    },
+    {
+     "h": "Kulut ja monimutkaisuus",
+     "p": [
+      "Useampi sääntö tarkoittaa usein useampia kauppoja ja enemmän palkkioita. Monimutkaista strategiaa on myös vaikeampi noudattaa, kun tunteet nousevat pintaan."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Mitä virhettä jokainen lisäsääntö estää?",
+      "Mitä lisäsääntö maksaa (jätetty tuotto, palkkiot)?",
+      "Onko strategia testattu useassa markkinatilanteessa?",
+      "Pystynkö noudattamaan sitä myös tappioputken aikana?"
+     ]
+    }
+   ],
+   "kokeile": "Aja demossa trendisuodatettu RSI-strategia ja pelkkä RSI-robotti samassa markkinassa. Vertaa kauppojen määrää ja tulosta.",
+   "avain": [
+    "Yhdistä suunta ja ajoitus",
+    "Suojaus maksaa tuotosta",
+    "Ylisovittamisen vaara kasvaa säännöillä"
+   ],
+   "lahteet": [],
+   "combo": true
   },
   {
    "slug": "oma-suunnitelma",
@@ -305,7 +964,42 @@
     "Vertaa riskiä ja mahdollista voittoa",
     "Pieni osuus salkusta per kauppa"
    ],
-   "lahteet": []
+   "lahteet": [],
+   "syva": [
+    {
+     "h": "Suunnitelman osat",
+     "p": [
+      "Hyvä suunnitelma vastaa kysymyksiin: mikä on syy, mikä on tappioraja, mikä on tavoite, kuinka suuri on positio ja mitä teen, jos tilanne muuttuu. Jos jokin näistä puuttuu, suunnitelma on vajaa."
+     ]
+    },
+    {
+     "h": "Riski suhteessa voittoon",
+     "p": [
+      "Jos tappioraja on 3 % sisäänmenon alapuolella ja tavoite 9 % yläpuolella, tavoite on kolminkertainen riskiin nähden. Kolmen tappion jälkeen yksi voitto kattaa ne. Tämä suhde auttaa arvioimaan, onko kauppa vaivan arvoinen."
+     ]
+    },
+    {
+     "h": "Päätös ennen kauppaa",
+     "p": [
+      "Kirjoita suunnitelma ennen kuin painat nappia. Kun kauppa on käynnissä, tunteet vaikuttavat arvioihin. Suunnitelma on sopimus itsesi kanssa."
+     ]
+    },
+    {
+     "h": "Kun suunnitelma ei toteudu",
+     "p": [
+      "Jos hinta saavuttaa tappiorajan, noudata sitä. Jos haluat muuttaa suunnitelmaa, tee se tietoisesti ja kirjaa syy. Tappioraja, jota siirretään, ei ole tappioraja."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Onko jokainen suunnitelman osa kirjattu?",
+      "Onko riski suhteessa voittoon kohtuullinen?",
+      "Noudatanko suunnitelmaa myös tappion hetkellä?"
+     ]
+    }
+   ]
   },
   {
    "slug": "tulosten-arviointi",
@@ -337,7 +1031,41 @@
     "Vertaa osta ja pidä -vaihtoehtoon",
     "Korjaa yksi virhe kerrallaan"
    ],
-   "lahteet": []
+   "lahteet": [],
+   "syva": [
+    {
+     "h": "Prosessi ennen tulosta",
+     "p": [
+      "Kolmen voittavan kaupan jälkeen on helppo luulla osaavansa, ja kolmen häviävän kaupan jälkeen luulla, ettei osaa. Pieni otos kertoo vähän. Arvioi kymmeniä kauppoja ja katso, noudatitko suunnitelmaasi."
+     ]
+    },
+    {
+     "h": "Mitä katsoa",
+     "p": [],
+     "ul": [
+      "Voittoprosentti ja odotusarvo",
+      "Keskivoitto verrattuna keskitappioon",
+      "Suurin pudotus",
+      "Palkkioiden osuus",
+      "Tulos verrattuna osta ja pidä -vaihtoehtoon"
+     ]
+    },
+    {
+     "h": "Virheiden luokittelu",
+     "p": [
+      "Luokittele jokainen tappio: oliko se strategian normaali tappio, suunnitelman rikkominen vai virhe arviossa? Normaaleille tappioille ei voi tehdä mitään. Muille voi."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Kuinka monta kauppaa arviossani on?",
+      "Kuinka moni tappio johtui suunnitelman rikkomisesta?",
+      "Mikä yksi asia parantaa tulosta eniten?"
+     ]
+    }
+   ]
   },
   {
    "slug": "riskinhallinta",
@@ -369,7 +1097,111 @@
     "Päätä riski ennen kauppaa",
     "Tappioraja ei takaa hintaa",
     "Hajautus pienentää, ei poista riskiä"
+   ],
+   "riski": true,
+   "syva": [
+    {
+     "h": "Tappioputket ovat normaaleja",
+     "p": [
+      "Jokainen strategia kokee tappioputkia. Taulukosta näet, mitä salkulle tapahtuu kymmenen peräkkäisen tappion jälkeen eri riskitasoilla. Pieni riski per kauppa pitää salkun elossa myös huonon jakson yli."
+     ]
+    },
+    {
+     "h": "Tappiorajan tyypit",
+     "p": [],
+     "ul": [
+      "Kiinteä tappioraja: yksi hinta, joka ei muutu",
+      "Seuraava tappioraja (trailing stop): raja seuraa hintaa ylöspäin tietyllä etäisyydellä. Jos ostat hintaan 100 ja raja on 10 % hinnan alapuolella, raja on 90. Jos hinta nousee 150:een, raja on 135, ja jos hinta laskee siihen, myyt noin 35 % voitolla.",
+      "Aikaraja: jos kauppa ei ole edennyt tietyssä ajassa, poistut"
+     ]
+    },
+    {
+     "h": "Korrelaatio",
+     "p": [
+      "Jos omistat useita kohteita, jotka liikkuvat samaan suuntaan, hajautus on näennäistä. Kryptovaluutat liikkuvat usein voimakkaasti yhdessä, joten useamman kryptovaluutan omistaminen ei välttämättä pienennä riskiä paljon."
+     ]
+    },
+    {
+     "h": "Riski kokonaisuutena",
+     "p": [
+      "Päätä etukäteen: suurin riski per kauppa, suurin riski yhteensä avoimista positioista ja suurin tappio, jonka jälkeen pidät tauon (esimerkiksi päivän tai viikon tappioraja)."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Kuinka monta peräkkäistä tappiota kestän ennen kuin tilanne on kestämätön?",
+      "Kuinka paljon riskiä on avoimissa positioissa yhteensä?",
+      "Mikä on tappioraja, jonka jälkeen pidän tauon?"
+     ]
+    }
    ]
+  },
+  {
+   "slug": "positiokoko",
+   "title": "Positiokoon laskeminen",
+   "lead": "Kuinka paljon ostat, on tärkeämpi päätös kuin mitä ostat. Positiokoko määrää, kuinka paljon yksi virhe maksaa.",
+   "sections": [
+    {
+     "h": "Kaava",
+     "p": [
+      "Päätä ensin, kuinka paljon olet valmis menettämään yhdessä kaupassa euroina. Jaa se sisäänmenohinnan ja tappiorajan erotuksella: määrä = riski euroina / (sisäänmeno − tappioraja)."
+     ]
+    },
+    {
+     "h": "Esimerkki",
+     "p": [
+      "Salkku on 10 000 euroa ja riski 1 % eli 100 euroa. Ostat hintaan 60 000 € ja tappioraja on 58 800 €, eli etäisyys on 1 200 €. Määrä on 100 / 1 200 = 0,0833 BTC, mikä on 5 000 € eli puolet salkusta. Jos tappioraja olisi 59 700 € (etäisyys 300 €), määrä olisi 0,333 BTC eli 20 000 €, joka ylittää koko salkun. Tiukka tappioraja ei siis tarkoita pientä positiota, vaan se rajoittaa, kuinka suuren positiokoon voit ottaa."
+     ]
+    }
+   ],
+   "syva": [
+    {
+     "h": "Tappiorajan etäisyys ja hintaliikkeet",
+     "p": [
+      "Jos tappioraja on lähempänä kuin hinnan tavallinen vaihtelu, se laukeaa usein turhaan. Aseta raja etäisyydelle, joka on suurempi kuin tavallinen päivittäinen vaihtelu, ja pienennä positiokokoa sen mukaan."
+     ]
+    },
+    {
+     "h": "Salkun pudotukset",
+     "p": [
+      "Tappion korjaaminen vaatii aina suuremman nousun: 10 % lasku vaatii 11 %, 20 % lasku 25 %, 30 % lasku 43 %, 50 % lasku 100 % ja 70 % lasku 233 % nousua. Pieni riski per kauppa suojaa sinut tappioputkilta: jos riski on 1 % per kauppa, kymmenen tappiota peräkkäin pudottaa salkkua noin 10 %, ei 50 %."
+     ]
+    },
+    {
+     "h": "Kulut",
+     "p": [
+      "Palkkio ja hintaero vähentävät jokaisen kaupan tulosta. Jos riski on hyvin pieni, kulut voivat olla suuri osa mahdollisesta voitosta. Laske kulut mukaan ennen ostoa."
+     ]
+    },
+    {
+     "h": "Positiokoon säätö",
+     "p": [],
+     "ul": [
+      "Pienennä kokoa, kun markkina on levoton ja tappioraja joudutaan asettamaan kauemmas",
+      "Älä kasvata kokoa tappion jälkeen yrittäessäsi voittaa se takaisin",
+      "Älä ylitä etukäteen päättämääsi riskiä, vaikka kauppa tuntuisi varmalta"
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Kuinka paljon euroina menetän, jos tappioraja laukeaa?",
+      "Kuinka suuri osa salkusta on positio?",
+      "Onko tappioraja realistisella etäisyydellä?",
+      "Onko riski sama kuin aiemmissa kaupoissa?"
+     ]
+    }
+   ],
+   "kokeile": "Valmentaja laskee riskin prosentteina salkusta, kun täytät tappiorajan. Kokeile eri tappiorajoja samalla ostosummalla ja katso, miten riski muuttuu.",
+   "avain": [
+    "Määrä = riski € / (sisäänmeno − tappioraja)",
+    "Tiukka tappioraja ei pienennä riskiä, jos koko kasvaa",
+    "Tappion korjaus vaatii suuremman prosentin"
+   ],
+   "lahteet": []
   },
   {
    "slug": "palkkiot",
@@ -395,7 +1227,107 @@
     "Palkkiot kertautuvat kaupankäynnin määrän mukana",
     "Maker on usein halvempi kuin taker",
     "Hintaero on lisäkulu"
+   ],
+   "kulut": true,
+   "syva": [
+    {
+     "h": "Kulut kertautuvat",
+     "p": [
+      "Pieni palkkio per kauppa voi kuukaudessa kasvaa suureksi, jos kauppoja on paljon. Taulukosta näet, kuinka suuri osa salkusta menee palkkioihin eri palkkiotasoilla ja kauppamäärillä. Jokainen osto ja jokainen myynti lasketaan erikseen."
+     ]
+    },
+    {
+     "h": "Kulu ja tuotto",
+     "p": [
+      "Strategian täytyy tuottaa vähintään palkkioiden verran ennen kuin se on omillaan. Mitä pienempi keskimääräinen voitto per kauppa on, sitä suurempi rooli palkkioilla on. Siksi tiheästi kauppaavat strategiat ovat herkkiä palkkioille."
+     ]
+    },
+    {
+     "h": "Maker ja taker",
+     "p": [
+      "Rajatilaus, joka jää kirjaan, on usein edullisempi kuin heti toteutuva tilaus. Jos et ole kiireessä, voit säästää käyttämällä rajatilauksia. Tarkista aina pörssin palkkiotaulukko, koska palkkiot voivat riippua myös kuukausivolyymistä."
+     ]
+    },
+    {
+     "h": "Piilokulut",
+     "p": [],
+     "ul": [
+      "Hintaero",
+      "Liukuma isoissa tilauksissa",
+      "Talletus- ja nostokulut",
+      "Veroseuraamukset kaupoista"
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Mikä on kokonaiskulu per kauppa?",
+      "Montako kauppaa strategia tekee kuukaudessa?",
+      "Onko strategian keskimääräinen voitto kuluja suurempi?"
+     ]
+    }
    ]
+  },
+  {
+   "slug": "kauppapaivakirja",
+   "title": "Kauppapäiväkirja",
+   "lead": "Kauppapäiväkirja on tehokkain yksittäinen oppimisen työkalu: se paljastaa, mitä todella teet.",
+   "sections": [
+    {
+     "h": "Mitä kirjataan",
+     "p": [
+      "Jokaisesta kaupasta kirjataan päivä, osto- ja myyntihinta, syy kauppaan, tappioraja, tavoite ja lopputulos. Kirjaa myös, noudatitko suunnitelmaasi."
+     ]
+    },
+    {
+     "h": "Miksi",
+     "p": [
+      "Muistisi värittää menneitä kauppoja. Päiväkirja näyttää, mitkä päätökset olivat hyviä ja mitkä huonoja riippumatta tuloksesta."
+     ]
+    }
+   ],
+   "syva": [
+    {
+     "h": "Odotusarvo",
+     "p": [
+      "Kauppojen kannattavuuden voi laskea odotusarvolla: voittoprosentti × keskimääräinen voitto − tappioprosentti × keskimääräinen tappio. Esimerkki: voittoja 40 %, keskivoitto 150 €, tappioita 60 %, keskitappio 60 €. Odotusarvo on 0,4 × 150 − 0,6 × 60 = 24 euroa kauppaa kohden. Voittoprosentti alle 50 % voi siis olla kannattava, jos voitot ovat tappioita suurempia."
+     ]
+    },
+    {
+     "h": "Viikkokatsaus",
+     "p": [],
+     "ul": [
+      "Kuinka moni kauppa noudatti suunnitelmaa?",
+      "Mikä oli suurin tappio ja miksi se tapahtui?",
+      "Myinkö voitolla liian aikaisin tai jäinkö tappiolle liian pitkäksi aikaa?",
+      "Mikä yksi asia parantaisin ensi viikolla?"
+     ]
+    },
+    {
+     "h": "Mittarit",
+     "p": [],
+     "ul": [
+      "Kauppojen määrä ja palkkiot",
+      "Voittoprosentti ja odotusarvo",
+      "Suurin pudotus",
+      "Tulos verrattuna osta ja pidä -vaihtoehtoon"
+     ]
+    },
+    {
+     "h": "Tyypillisiä paljastuksia",
+     "p": [
+      "Moni huomaa, että suurin osa tappioista tulee kaupoista, joissa suunnitelmaa ei noudatettu, eikä strategian virheestä. Päiväkirja tekee tämän näkyväksi."
+     ]
+    }
+   ],
+   "kokeile": "Valmentaja kirjaa sisäänmenot ja riskit automaattisesti. Täydennä sitä omalla viikkokatsauksellasi: kirjaa ylös viiden kaupan syyt ja tulokset.",
+   "avain": [
+    "Kirjaa syy, riski ja tulos",
+    "Odotusarvo kertoo, onko strategia kannattava",
+    "Katsaus kerran viikossa"
+   ],
+   "lahteet": []
   },
   {
    "slug": "aktiivinen-kaupankaynti",
@@ -426,7 +1358,96 @@
     "Kulut ja ajoitus painavat enemmän",
     "Tunteet ohjaavat helposti virheisiin",
     "Kirjanpito paljastaa omat tavat"
+   ],
+   "syva": [
+    {
+     "h": "Miksi aktiivinen on vaikeaa",
+     "p": [
+      "Aktiivinen kauppias maksaa palkkiot ja hintaeron jokaisesta kaupasta ja kilpailee muiden kanssa, joilla voi olla nopeammat työkalut ja enemmän tietoa. Jotta pärjäät, tarvitset strategian, jonka etu on suurempi kuin kulut. Se on mahdollista mutta vaatii kurinalaisuutta."
+     ]
+    },
+    {
+     "h": "Tunteet ja päätökset",
+     "p": [
+      "Tappion jälkeen halutaan voittaa takaisin, voiton jälkeen ollaan ylivarmoja, ja pelko jäädä paitsi ohjaa ostoihin huipulla. Nämä ovat ihmisen normaaleja reaktioita. Ratkaisu on säännöt, jotka päätetään ennen kauppaa ja kirjataan ylös."
+     ]
+    },
+    {
+     "h": "Sääntöjä, jotka auttavat",
+     "p": [],
+     "ul": [
+      "Päivittäinen enimmäistappio: kun se täyttyy, lopetat päiväksi",
+      "Enimmäismäärä kauppoja päivässä",
+      "Ei uusia kauppoja heti tappion jälkeen: odota esimerkiksi tunti",
+      "Aina suunnitelma ennen ostoa"
+     ]
+    },
+    {
+     "h": "Mittaa ja vertaa",
+     "p": [
+      "Vertaa omaa tulostasi osta ja pidä -vaihtoehtoon ja laske kulut mukaan. Jos aktiivinen kaupankäyntisi ei päihitä sitä, on rehellistä miettiä, kannattaako."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Mikä on etu, jonka uskon strategiassani olevan?",
+      "Onko etu suurempi kuin kulut?",
+      "Noudatanko päivittäisiä rajojani?"
+     ]
+    }
    ]
+  },
+  {
+   "slug": "yleisimmat-virheet",
+   "title": "Yleisimmät virheet ja miten ne korjataan",
+   "lead": "Aloittelijat tekevät pitkälti samat virheet. Kun tiedät ne, voit tunnistaa ne omassa toiminnassasi.",
+   "sections": [
+    {
+     "h": "Virheet",
+     "p": [],
+     "ul": [
+      "Ei suunnitelmaa: ostetaan tunteesta ilman tappiorajaa",
+      "Liian iso positio: yksi virhe vie suuren osan salkusta",
+      "Tappion jahtaaminen: yritetään voittaa menetetty takaisin isommilla panoksilla",
+      "Strategian vaihtaminen jokaisen tappion jälkeen",
+      "Liiallinen kaupankäynti: palkkiot syövät tuoton",
+      "Ostetaan nousun jälkeen pelosta jäädä paitsi",
+      "Myydään voitto liian aikaisin ja annetaan tappion kasvaa",
+      "Ei oteta huomioon markkinatilaa"
+     ]
+    }
+   ],
+   "syva": [
+    {
+     "h": "Korjaukset",
+     "p": [],
+     "ul": [
+      "Ei suunnitelmaa → täytä Suunnitelma-kohta ennen jokaista ostoa",
+      "Liian iso positio → laske positiokoko riskistä, älä summasta",
+      "Tappion jahtaaminen → aseta päivittäinen tappioraja ja pidä tauko, kun se täyttyy",
+      "Strategian vaihtaminen → vaihda vain, kun olet testannut muutoksen useassa markkinatilanteessa",
+      "Liiallinen kaupankäynti → seuraa palkkioita ja vertaa osta ja pidä -vaihtoehtoon",
+      "Pelko jäädä paitsi → odota seuraavaa suunnitelman mukaista signaalia",
+      "Liian aikainen voitto ja myöhäinen tappio → kirjaa raja ennen ostoa ja noudata sitä",
+      "Markkinatilan huomiotta jättäminen → katso efektiivisuussuhde ja valitse strategia sen mukaan"
+     ]
+    },
+    {
+     "h": "Pidä tauko",
+     "p": [
+      "Kun olet tehnyt useita tappioita peräkkäin, tauko on usein paras päätös. Tunteet johtavat huonoihin kauppoihin, ja markkina on edelleen auki, kun palaat."
+     ]
+    }
+   ],
+   "kokeile": "Katso Valmentajan harjoituksia ja valitse niistä virhe, jonka teet itse useimmin. Keskity korjaamaan se viikon ajan.",
+   "avain": [
+    "Useimmat virheet ovat tunnepohjaisia",
+    "Korjaa yksi virhe kerrallaan",
+    "Tauko on päätös"
+   ],
+   "lahteet": []
   },
   {
    "slug": "strategian-testaus",
@@ -460,6 +1481,41 @@
    ],
    "lahteet": [
     "capital"
+   ],
+   "syva": [
+    {
+     "h": "Takautuvan testauksen sudenkuopat",
+     "p": [],
+     "ul": [
+      "Ylisovittaminen: strategia viritetään sopimaan menneeseen dataan niin hyvin, ettei se toimi tulevassa",
+      "Tulevaisuuden vuoto (look-ahead bias): testi käyttää tietoa, joka ei ollut saatavilla päätöksen hetkellä",
+      "Kulujen unohtaminen: palkkiot ja liukuma jätetään pois ja tulos näyttää liian hyvältä",
+      "Liian vähän kauppoja: muutama kauppa ei kerro mitään",
+      "Yksi markkinajakso: strategia testataan vain nousussa tai vain laskussa"
+     ]
+    },
+    {
+     "h": "Hyvä testaus",
+     "p": [
+      "Testaa strategia useissa markkinatilanteissa (nousu, lasku, sivuttain, romahdus), laske kulut mukaan, vertaa osta ja pidä -vaihtoehtoon ja katso suurinta pudotusta, älä vain lopputulosta. Tämän sivuston vertailusivu tekee juuri tämän keksityllä datalla."
+     ]
+    },
+    {
+     "h": "Demotili ja oikea raha",
+     "p": [
+      "Demotilillä tunteet eivät ole mukana, eikä liukuma ja palkkiot ole välttämättä samat kuin oikeassa pörssissä. Tämä kannattaa pitää mielessä, kun siirryt oikeaan kaupankäyntiin. Tässä demossa hinnat ovat satunnaisia."
+     ]
+    },
+    {
+     "h": "Tarkistuslista",
+     "p": [],
+     "ul": [
+      "Kuinka monta kauppaa testissä oli?",
+      "Oliko palkkiot ja liukuma mukana?",
+      "Toimiko strategia muussakin kuin yhdessä markkinatilanteessa?",
+      "Onko tulos parempi kuin osta ja pidä?"
+     ]
+    }
    ]
   }
  ]

@@ -118,3 +118,26 @@ select{display:block;width:100%;margin-top:3px;padding:11px;border-radius:4px;bo
 .ex li{padding:5px 0;border-top:1px solid var(--line)}.ex li.done{color:var(--buy)}
 @media(min-width:900px){.grid>:nth-child(7){grid-column:1;grid-row:4}}
 .cup{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:4px;padding:10px}
+.chart{margin:14px 0;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:8px}
+.chart svg{width:100%;height:auto;display:block}
+.chart figcaption{font-size:12px;color:var(--mut);padding:6px 4px 0}
+.chart .grid{stroke:#1c2638;stroke-width:1}
+.chart .lvl{stroke:#6f7c93;stroke-width:1;stroke-dasharray:4 4}
+.chart .lt{fill:#8b97ad;font-size:11px}
+.chart .ln-p{fill:none;stroke:#e6ebf4;stroke-width:1.6}
+.chart .ln-a{fill:none;stroke:#f0b90b;stroke-width:1.5}
+.chart .ln-b{fill:none;stroke:#5aa9ff;stroke-width:1.5}
+.chart .ln-c{fill:none;stroke:#b48cff;stroke-width:1.2;stroke-dasharray:5 3}
+.chart .mk-buy{fill:#26d19a}.chart .mk-sell{fill:#ff5c70}
+.dtable{width:100%;border-collapse:collapse;font-size:13px;margin:12px 0;font-variant-numeric:tabular-nums}
+.dtable th,.dtable td{padding:7px 8px;border-top:1px solid var(--line);text-align:right}
+.dtable th:first-child,.dtable td:first-child{text-align:left}
+.dtable th{color:var(--mut);font-weight:600;border-top:0}
+.dtable .pos{color:var(--buy)}.dtable .neg{color:var(--sell)}
+.tblwrap{overflow-x:auto}
+.deep{border:1px solid var(--acc);border-radius:8px;padding:4px 14px 10px;margin:28px 0 12px;background:#14110a}
+.deep>h2.dh{color:var(--acc);margin:14px 0 4px;font-size:15px;letter-spacing:.02em}
+.badge{display:inline-block;background:var(--acc);color:#1a1400;font-size:11px;font-weight:700;padding:2px 7px;border-radius:3px;margin-right:6px}
+.legend{font-size:12px;color:var(--mut)}
+.chart .vb{fill:#6f7c93;opacity:.6}
+@media(max-width:520px){.dtable{font-size:12px}.dtable th,.dtable td{padding:6px 5px}.dtable td:first-child{min-width:96px}}

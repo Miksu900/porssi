@@ -333,3 +333,50 @@ test("valmentaja: FIFO-sulku, hälytykset, riski ja harjoitukset", async () => {
   assert.equal(c.stats(120, 1100).you, 100);
   assert.equal(c.stats(120, 1100).hold, 20);
 });
+
+test("backtest: deterministinen data, hold, palkkiot ja mittarit", async () => {
+  const { scenario, backtest, STRATS, efficiencyRatio, sma: s2, rsiAt } = await import("../src/backtest.mjs");
+  const a = scenario("nousu", 100, 3), b = scenario("nousu", 100, 3);
+  assert.deepEqual(a.p, b.p);
+  const up = scenario("nousu", 300, 1), down = scenario("lasku", 300, 1);
+  assert.ok(up.p.at(-1) > up.p[0] && down.p.at(-1) < down.p[0]);
+  const h = backtest([100, 110], STRATS.hold.f, 0);
+  assert.ok(Math.abs(h.ret - 10) < 1e-9 && h.trades === 1);
+  const hf = backtest([100, 110], STRATS.hold.f, 0.01);
+  assert.ok(hf.ret < 10); // palkkio syö tuottoa
+  const flat = backtest([100, 100, 100], STRATS.hold.f, 0);
+  assert.equal(flat.maxDD, 0);
+  assert.equal(s2([1, 2, 3], 2, 2), 2.5);
+  assert.equal(rsiAt([1, 2, 3, 4], 3, 3), 100);
+  const er = efficiencyRatio([1, 2, 3, 4, 5], 4);
+  assert.equal(er[4], 1);
+  for (const k of Object.keys(STRATS)) {
+    const r = backtest(scenario("sivuttain", 300, 2).p, STRATS[k].f);
+    assert.ok(Number.isFinite(r.ret) && r.maxDD >= 0 && r.maxDD <= 100, k);
+  }
+});
+
+test("opetussivujen väitteet pitävät keksityllä datalla (30 siementä)", async () => {
+  const { scenario, backtest, STRATS } = await import("../src/backtest.mjs");
+  const seeds = Array.from({ length: 30 }, (_, i) => i + 1);
+  const m = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+  const r = (sk, k, f) => m(seeds.map((s) => backtest(scenario(sk, 300, s).p, STRATS[k].f)[f]));
+  // MA: sivuttain heikko, paljon kauppoja
+  assert.ok(r("sivuttain", "ma", "ret") < 0);
+  assert.ok(r("sivuttain", "ma", "trades") > 5);
+  // meanrev: sivuttain positiivinen, romahduksessa huonompi kuin hold
+  assert.ok(r("sivuttain", "meanrev", "ret") > 0);
+  assert.ok(r("romahdus", "meanrev", "ret") < r("romahdus", "hold", "ret"));
+  // breakout: romahduksessa parempi kuin hold, sivuttain heikko
+  assert.ok(r("romahdus", "breakout", "ret") > r("romahdus", "hold", "ret"));
+  assert.ok(r("sivuttain", "breakout", "ret") < 0);
+  // rsi: nousussa jää holdin taakse, sivuttain positiivinen
+  assert.ok(r("nousu", "rsi", "ret") < r("nousu", "hold", "ret"));
+  assert.ok(r("sivuttain", "rsi", "ret") > 0);
+  // yhdistelmä: pienempi pudotus romahduksessa ja laskussa, mutta nousussa jää holdin taakse
+  assert.ok(r("romahdus", "combo", "maxDD") < r("romahdus", "hold", "maxDD"));
+  assert.ok(r("lasku", "combo", "maxDD") < r("lasku", "hold", "maxDD"));
+  assert.ok(r("nousu", "combo", "ret") < r("nousu", "hold", "ret"));
+  // osta ja pidä: suurimmat pudotukset laskussa ja romahduksessa
+  assert.ok(r("lasku", "hold", "maxDD") > 30 && r("romahdus", "hold", "maxDD") > 30);
+});
