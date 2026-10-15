@@ -308,3 +308,28 @@ test("autopilotti: MA-leikkaus ostaa nousussa ja myy laskussa", async () => {
   for (const p of [65, 80, 100, 120, 140, 160]) { setPrice(p); ap.tick(); } // nousu → osto
   assert.ok(ex.balances("u").BTC.free > btcAfterSell, "osti nousussa");
 });
+
+test("valmentaja: FIFO-sulku, hälytykset, riski ja harjoitukset", async () => {
+  const { createCoach } = await import("../src/coach.mjs");
+  const c = createCoach({ startValue: 1000, startPrice: 100, startBtc: 1 });
+  c.onBuy(1, 100, { why: "trend", stop: 95, target: 120 });
+  c.onBuy(1, 110, {});
+  assert.deepEqual(c.alerts(100), []);
+  assert.equal(c.alerts(94).length, 1); // tappioraja
+  assert.equal(c.alerts(121).length, 1); // tavoite
+  c.onSell(1.5, 120);
+  assert.equal(c.closed.length, 2);
+  assert.equal(c.closed[0].pnl, 20);
+  assert.equal(c.closed[1].pnl, 5);
+  assert.equal(c.positions.length, 1);
+  assert.equal(c.positions[0].qty, 0.5);
+  assert.equal(c.riskPct(1, 100, 95, 1000), 0.5);
+  assert.equal(c.riskPct(1, 100, 105, 1000), null);
+  c.recordRisk(0.5);
+  const ex = c.exercises(120, 1100);
+  assert.equal(ex[0].done, true);
+  assert.equal(ex[1].done, false);
+  assert.equal(ex[2].done, true);
+  assert.equal(c.stats(120, 1100).you, 100);
+  assert.equal(c.stats(120, 1100).hold, 20);
+});

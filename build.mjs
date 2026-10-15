@@ -6,6 +6,7 @@ cpSync("site", "dist", { recursive: true });
 cpSync("src/engine.mjs", "dist/engine.mjs");
 cpSync("src/bots.mjs", "dist/bots.mjs");
 cpSync("src/autopilot.mjs", "dist/autopilot.mjs");
+cpSync("src/coach.mjs", "dist/coach.mjs");
 
 const data = JSON.parse(readFileSync("site/opeta/oppitunnit.json", "utf8"));
 const lessons = data.oppitunnit;

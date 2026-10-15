@@ -269,6 +269,77 @@
    "lahteet": []
   },
   {
+   "slug": "oma-suunnitelma",
+   "title": "Tee kauppa suunnitelmalla",
+   "lead": "Hyvä kauppa alkaa ennen ostoa. Kirjaa kolme asiaa: miksi, missä luovut tappiolla ja missä otat voitot.",
+   "sections": [
+    {
+     "h": "1. Syy",
+     "p": [
+      "Mikä signaali tai ajatus kauppaan johtaa? Trendin jatkuminen, hinnan palautuminen keskiarvoon, läpimurto vai jokin muu? Jos et osaa sanoa syytä, kauppa on arvaus."
+     ]
+    },
+    {
+     "h": "2. Tappioraja",
+     "p": [
+      "Päätä etukäteen hinta, jossa myönnät olleesi väärässä ja lopetat. Tappioraja rajoittaa yksittäisen kaupan tappion. Huomaa, että nopeassa liikkeessä toteutunut hinta voi olla huonompi kuin raja."
+     ]
+    },
+    {
+     "h": "3. Tavoite ja riski suhteessa tuottoon",
+     "p": [
+      "Aseta myös hinta, jossa otat voitot. Vertaa mahdollista voittoa mahdolliseen tappioon: jos riskeeraat 100 euroa voittaaksesi 100, sinun pitää olla oikeassa yli puolessa kaupoista pärjätäksesi. Jos voitat 200 samalla riskillä, riittää pienempi osuus.",
+      "Yleinen nyrkkisääntö on riskeerata yksittäisessä kaupassa vain pieni osa salkusta, esimerkiksi 1–2 %. Se on nyrkkisääntö, ei sääntö, ja oikea luku riippuu sinusta."
+     ]
+    },
+    {
+     "h": "Mitä sitten tapahtuu",
+     "p": [
+      "Kun hinta osuu rajaan tai tavoitteeseen, tee päätös itse. Suunnitelman tarkoitus ei ole poistaa harkintaa vaan estää tunteista tehdyt päätökset."
+     ]
+    }
+   ],
+   "kokeile": "Tee kaupassa osto ja täytä Suunnitelma-kohta: syy, tappioraja ja tavoite. Katso Valmentajasta, kuinka suuri riski kaupassa on prosentteina salkusta.",
+   "avain": [
+    "Kirjaa syy, tappioraja ja tavoite ennen ostoa",
+    "Vertaa riskiä ja mahdollista voittoa",
+    "Pieni osuus salkusta per kauppa"
+   ],
+   "lahteet": []
+  },
+  {
+   "slug": "tulosten-arviointi",
+   "title": "Arvioi omaa kaupankäyntiäsi",
+   "lead": "Oppiminen tapahtuu, kun katsot omia päätöksiäsi jälkikäteen.",
+   "sections": [
+    {
+     "h": "Pelkkä voitto ei kerro kaikkea",
+     "p": [
+      "Hyvä päätös voi päättyä tappioon ja huono päätös voittoon. Kysy: noudatinko suunnitelmaani? Oliko riski sopiva? Jos voitit sattumalta, et ole oppinut mitään."
+     ]
+    },
+    {
+     "h": "Vertaa osta ja pidä -vaihtoehtoon",
+     "p": [
+      "Jos aktiivinen kaupankäyntisi ei tuota enempää kuin se, että olisit vain pitänyt alkuperäisen salkun, kaupankäynnistä ei ole ollut hyötyä. Palkkiot ja hintaero kasvattavat tätä kynnystä."
+     ]
+    },
+    {
+     "h": "Katso toistuvia virheitä",
+     "p": [
+      "Myyt liian aikaisin voitolta? Jätät tappion kasvamaan? Ostat nousun jälkeen? Kirjaa havainnot ja korjaa yksi virhe kerrallaan."
+     ]
+    }
+   ],
+   "kokeile": "Tee kymmenen kauppaa suunnitelmalla ja katso Valmentajasta, kuinka moni sulkeutui voitolla ja päihititkö osta ja pidä -vertailun.",
+   "avain": [
+    "Arvioi prosessi, älä vain tulosta",
+    "Vertaa osta ja pidä -vaihtoehtoon",
+    "Korjaa yksi virhe kerrallaan"
+   ],
+   "lahteet": []
+  },
+  {
    "slug": "riskinhallinta",
    "title": "Riskinhallinta",
    "lead": "Kaupankäynnissä pitkään pysyminen ei ole kiinni siitä, kuinka usein olet oikeassa, vaan siitä, kuinka paljon menetät silloin kun olet väärässä.",
