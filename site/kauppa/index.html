@@ -25,7 +25,7 @@
   <section class="card"><canvas id="chart" width="900" height="420"></canvas></section>
 
   <section class="card form">
-    <div class="tabs small" id="mode"><button data-m="manual" class="on">Teen kaupat itse</button><button data-m="robot">Robotti hoitaa</button></div>
+    <div class="tabs small" id="mode"><button data-m="manual" class="on">Teen kaupat itse</button><button data-m="robot">Robotti (vertailuun)</button></div>
     <div id="manual">
     <div class="tabs" id="side"><button data-s="buy" class="on buy">Osta</button><button data-s="sell" class="sell">Myy</button></div>
     <div class="tabs small" id="type"><button data-t="limit" class="on">Rajahinta</button><button data-t="market">Markkina</button></div>
@@ -33,6 +33,14 @@
       <label id="lPrice">Hinta (€)<input id="price" inputmode="decimal" autocomplete="off"></label>
       <label id="lQty">Määrä (BTC)<input id="qty" inputmode="decimal" autocomplete="off"></label>
       <label id="lBudget" hidden>Käytettävä summa (€)<input id="budget" inputmode="decimal" autocomplete="off"></label>
+      <details class="plan" id="planBox" open>
+        <summary>Suunnitelma (suositus ostoille)</summary>
+        <label>Miksi teet tämän kaupan?
+          <select id="why"><option value="">Valitse syy</option><option value="trend">Trendin seuraaminen</option><option value="meanrev">Keskiarvoon palautuminen</option><option value="breakout">Läpimurto</option><option value="other">Muu syy</option></select>
+        </label>
+        <label>Tappioraja (€)<input id="stop" inputmode="decimal" autocomplete="off" placeholder="Hinta, jossa luovut"></label>
+        <label>Tavoite (€)<input id="target" inputmode="decimal" autocomplete="off" placeholder="Hinta, jossa otat voitot"></label>
+      </details>
       <div id="est" class="sub"></div>
       <button class="go buy" id="go">Osta BTC</button>
       <div id="msg" role="status"></div>
@@ -100,6 +108,16 @@
   <section class="card">
     <h2>Viimeisimmät kaupat</h2>
     <div id="trades" class="trades"></div>
+  </section>
+  <section class="card" id="coach">
+    <h2>Valmentaja</h2>
+    <div id="alerts"></div>
+    <div id="positions" class="sub">Ei avoimia positioita. Tee osto suunnitelmalla, niin valmentaja seuraa sitä.</div>
+    <div id="cstats" class="cstats"></div>
+    <h2 class="mt">Kisa</h2>
+    <div id="cup" class="cup"></div>
+    <h2 class="mt">Harjoitukset</h2>
+    <ul id="ex" class="ex"></ul>
   </section>
 </div>
 </main>

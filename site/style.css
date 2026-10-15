@@ -106,3 +106,15 @@ h3{margin:0 0 6px;font-size:16px}
 select{display:block;width:100%;margin-top:3px;padding:11px;border-radius:4px;border:1px solid var(--line);background:#0a0e16;color:var(--ink);font:inherit;font-size:16px}
 .rlog{margin-top:8px;font-size:12px;color:var(--mut);max-height:150px;overflow:auto}
 .rlog div{padding:3px 0;border-top:1px solid var(--line)}
+
+.plan{border:1px solid var(--line);border-radius:4px;padding:8px 10px;margin-bottom:8px}
+.plan summary{cursor:pointer;font-size:13px;color:var(--acc)}
+.plan label{margin:8px 0 0}
+.alert{background:#2a2410;border-left:3px solid var(--acc);padding:8px 10px;margin-bottom:8px;font-size:13px}
+.cstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.cstats div{display:flex;flex-direction:column}.cstats b{font-size:15px}
+.mt{margin-top:16px}
+.ex{list-style:none;margin:0;padding:0;font-size:13px;color:var(--mut)}
+.ex li{padding:5px 0;border-top:1px solid var(--line)}.ex li.done{color:var(--buy)}
+@media(min-width:900px){.grid>:nth-child(7){grid-column:1;grid-row:4}}
+.cup{display:flex;flex-direction:column;gap:4px;border:1px solid var(--line);border-radius:4px;padding:10px}

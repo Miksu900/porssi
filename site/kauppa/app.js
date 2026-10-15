@@ -1,13 +1,14 @@
 import { Exchange, ExchangeError, toUnits, fmtUnits } from "../engine.mjs";
 import { createMarket } from "../bots.mjs";
 import { createAutopilot, STRATEGIES } from "../autopilot.mjs";
+import { createCoach, REASONS } from "../coach.mjs";
 
 const ME = "sina";
 const $ = (id) => document.getElementById(id);
 const EUR = (u, d = 2) => Number(fmtUnits(u, 2, d)).toLocaleString("fi-FI", { minimumFractionDigits: d, maximumFractionDigits: d });
 const BTCf = (u, d = 4) => fmtUnits(u, 8, d).replace(".", ",");
 
-let auto = null, ex, mkt, series = [], side = "buy", type = "limit";
+let usedRobot = false, coach = null, auto = null, ex, mkt, series = [], side = "buy", type = "limit";
 
 // tallentaa jokaisesta kierroksesta hinnan ja kierroksen volyymin (kynttilöitä varten)
 function record(seen) {
@@ -23,6 +24,7 @@ let seenId = 0, startValue = 0;
 
 function start() {
   auto = null;
+  usedRobot = false;
   ex = new Exchange({ makerFeeBps: 0n, takerFeeBps: 5n });
   mkt = createMarket(ex, { start: 60000 });
   series = [];
@@ -34,6 +36,7 @@ function start() {
   ex.deposit(ME, "BTC", toUnits("0.5", 8));
   $("price").value = ex.lastPrice ? fmtUnits(ex.lastPrice, 2) : "";
   startValue = 10000 + 0.5 * (Number(ex.lastPrice) / 100);
+  coach = createCoach({ startValue, startPrice: Number(ex.lastPrice) / 100, startBtc: 0.5 });
   render();
 }
 
@@ -90,7 +93,33 @@ function render() {
   $("trades").innerHTML = ex.trades.slice(-12).reverse().map((t) =>
     `<div><span class="${t.takerSide === "buy" ? "up" : "down"}">${EUR(t.price)}</span><span>${BTCf(t.qty, 4)}</span><span>${t.taker === ME || t.maker === ME ? "sinä" : ""}</span></div>`).join("");
   estimate();
+  renderCoach();
   draw();
+}
+
+const lastP = () => (ex.lastPrice ? Number(ex.lastPrice) / 100 : 0);
+const numOrNull = (id) => { const v = $(id).value.replace(",", ".").trim(); if (!v) return null; const n = Number(v); if (!(n > 0)) throw new ExchangeError("bad_plan", "Tarkista suunnitelman luvut."); return n; };
+function totalNow() {
+  const b = ex.balances(ME), p = lastP();
+  return Number(b.EUR.free + b.EUR.locked) / 100 + (Number(b.BTC.free + b.BTC.locked) / 1e8) * p;
+}
+
+function renderCoach() {
+  const p = lastP(), tot = totalNow();
+  $("alerts").innerHTML = coach.alerts(p).map((t) => `<div class="alert">${t}</div>`).join("");
+  $("positions").innerHTML = coach.positions.length
+    ? coach.positions.map((x) => {
+        const pl = x.qty * (p - x.entry);
+        return `<div class="ord"><span>${x.qty.toFixed(4).replace(".", ",")} BTC @ ${x.entry.toFixed(0)} €${x.why ? " · " + REASONS[x.why] : ""}<br><span class="sub">Raja ${x.stop ? x.stop.toFixed(0) + " €" : "–"} · Tavoite ${x.target ? x.target.toFixed(0) + " €" : "–"}</span></span><b class="${pl >= 0 ? "up" : "down"}">${pl >= 0 ? "+" : ""}${pl.toFixed(2).replace(".", ",")} €</b></div>`;
+      }).join("")
+    : "Ei avoimia positioita. Tee osto suunnitelmalla, niin valmentaja seuraa sitä.";
+  const s = coach.stats(p, tot), f = (n) => (n >= 0 ? "+" : "") + n.toFixed(2).replace(".", ",") + " €";
+  $("cstats").innerHTML = `<div><span class="sub">Oma tulos</span><b class="${s.you >= 0 ? "up" : "down"}">${f(s.you)}</b></div><div><span class="sub">Jos olisit vain pitänyt</span><b class="${s.hold >= 0 ? "up" : "down"}">${f(s.hold)}</b></div><div><span class="sub">Suljettuja</span><b>${s.closedCount}${s.winRate !== null ? " (" + Math.round(s.winRate * 100) + " % voitolla)" : ""}</b></div><div><span class="sub">Suunnitelmalla</span><b>${s.planned}/${s.entries} ostoa</b></div>`;
+  const pct = (s.you / startValue) * 100;
+  $("cup").innerHTML = usedRobot
+    ? `<b class="down">Ei kisakelpoinen</b><span class="sub">Robotti on ollut käytössä tällä kierroksella. Paina "Aloita alusta" aloittaaksesi uuden kisakelpoisen kierroksen.</span>`
+    : `<b class="up">Kisakelpoinen</b><span class="sub">Kisakortti: tulos ${(pct >= 0 ? "+" : "") + pct.toFixed(2).replace(".", ",")} % alkusalkusta, ${s.closedCount} suljettua kauppaa. Vain itse tehdyt kaupat lasketaan.</span>`;
+  $("ex").innerHTML = coach.exercises(p, tot).map((e) => `<li class="${e.done ? "done" : ""}">${e.done ? "✓" : "○"} ${e.text}</li>`).join("");
 }
 
 function estimate() {
@@ -99,6 +128,11 @@ function estimate() {
     if (type === "limit") {
       const p = parse("price", 2), q = parse("qty", 8);
       t = `Arvo noin ${EUR((p * q) / ex.one)} € · palkkio maker 0 % / taker 0,05 %`;
+      const st = Number($("stop").value.replace(",", "."));
+      if (side === "buy" && st > 0 && st < Number(p) / 100) {
+        const r = coach.riskPct(Number(q) / 1e8, Number(p) / 100, st, totalNow());
+        if (r !== null) t += ` · Riski ${r.toFixed(2).replace(".", ",")} % salkusta`;
+      }
     } else if (side === "buy") t = $("budget").value ? "Ostaa parhaaseen hintaan, kunnes summa on käytetty." : "";
     else t = $("qty").value ? "Myy parhaaseen hintaan heti." : "";
   } catch { t = ""; }
@@ -189,8 +223,29 @@ $("f").addEventListener("submit", (e) => {
     if (type === "limit") { o.price = parse("price", 2); o.qty = parse("qty", 8); }
     else if (side === "buy") o.quoteBudget = parse("budget", 2);
     else o.qty = parse("qty", 8);
+    const price0 = lastP();
+    let plan = null;
+    if (side === "buy") {
+      const stop = numOrNull("stop"), target = numOrNull("target"), why = $("why").value || null;
+      const entryGuess = type === "limit" ? Number(o.price) / 100 : price0;
+      if (stop !== null && !(stop < entryGuess)) throw new ExchangeError("bad_plan", "Tappioraja pitää olla ostohintaa matalampi.");
+      if (target !== null && !(target > entryGuess)) throw new ExchangeError("bad_plan", "Tavoite pitää olla ostohintaa korkeampi.");
+      plan = { stop, target, why };
+    }
     const r = ex.placeOrder(o);
     const filled = r.order.filled;
+    if (filled > 0n) {
+      const qtyN = Number(filled) / 1e8;
+      if (side === "buy") {
+        const entry = Number(r.order.spent) / 100 / qtyN;
+        coach.onBuy(qtyN, entry, plan || {});
+        coach.recordRisk(coach.riskPct(qtyN, entry, plan && plan.stop, totalNow()));
+        $("stop").value = ""; $("target").value = "";
+      } else {
+        const qSum = r.trades.reduce((s, t) => s + t.qty, 0n), amt = r.trades.reduce((s, t) => s + t.quoteAmt, 0n);
+        coach.onSell(qtyN, Number(amt) / 100 / (Number(qSum) / 1e8));
+      }
+    }
     msg(filled > 0n ? `Toteutui ${BTCf(filled, 6)} BTC.` : "Tilaus jätetty kirjaan.", true);
   } catch (er) {
     msg(er instanceof ExchangeError ? er.message : "Tarkista luvut.");
@@ -266,6 +321,8 @@ $("rgo").addEventListener("click", () => {
     if (!(per >= 2) || !(lo > 0 && hi > lo && hi < 100) || !(eur >= 1)) { $("rstat").textContent = "Tarkista: alaraja < yläraja, välillä 0–100."; return; }
     params = { period: Math.round(per), low: lo, high: hi, euros: eur, sellFraction: 0.5 };
   }
+  if (!usedRobot && !confirm("Robotin käyttö mitätöi tämän kierroksen kisatuloksen. Kisaan kelpaa vain itse treidaaminen. Jatketaanko?")) return;
+  usedRobot = true;
   auto = createAutopilot(ex, ME, s, params, series.map((x) => x.p));
   robotUi();
 });
