@@ -18,7 +18,7 @@ function record(seen) {
   if (series.length > 600) series.shift();
   return ts.length ? ts[ts.length - 1].id : seen;
 }
-let seenId = 0;
+let seenId = 0, startValue = 0;
 
 function start() {
   ex = new Exchange({ makerFeeBps: 0n, takerFeeBps: 5n });
@@ -31,6 +31,7 @@ function start() {
   ex.deposit(ME, "EUR", toUnits("10000", 2));
   ex.deposit(ME, "BTC", toUnits("0.5", 8));
   $("price").value = ex.lastPrice ? fmtUnits(ex.lastPrice, 2) : "";
+  startValue = 10000 + 0.5 * (Number(ex.lastPrice) / 100);
   render();
 }
 
@@ -64,6 +65,11 @@ function render() {
   $("btcL").textContent = BTCf(b.BTC.locked, 6);
   const total = lp ? Number(b.EUR.free + b.EUR.locked) / 100 + (Number(b.BTC.free + b.BTC.locked) / 1e8) * (Number(lp) / 100) : 0;
   $("total").textContent = total.toLocaleString("fi-FI", { maximumFractionDigits: 2 });
+  if (lp && startValue) {
+    const d = total - startValue;
+    $("pnl").textContent = (d >= 0 ? "+" : "") + d.toLocaleString("fi-FI", { maximumFractionDigits: 2 }) + " €";
+    $("pnl").className = d >= 0 ? "up" : "down";
+  }
 
   const book = ex.getBook(7);
   const max = [...book.bids, ...book.asks].reduce((m, l) => (l.qty > m ? l.qty : m), 1n);
