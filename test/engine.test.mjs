@@ -244,3 +244,36 @@ test("pölyosto ei anna basea ilmaiseksi", () => {
   assert.ok(ex.balances("b").BTC.free - before <= BTC("0.00003"));
   assert.ok(ex.trades.length < 5);
 });
+
+test("autopilotti: säännöllinen osto ostaa välein ja kunnioittaa saldoa", async () => {
+  const { createAutopilot } = await import("../src/autopilot.mjs");
+  const ex = mk();
+  fund(ex, "mm", "1000000", "100");
+  ex.deposit("u", "EUR", EUR("300"));
+  ex.placeOrder({ acct: "mm", side: "sell", type: "limit", price: EUR("100"), qty: BTC("50") });
+  ex.placeOrder({ acct: "mm", side: "buy", type: "limit", price: EUR("99"), qty: BTC("1") });
+  const ap = createAutopilot(ex, "u", "dca", { everyTicks: 2, euros: 100 });
+  for (let i = 0; i < 20; i++) ap.tick();
+  assert.equal(ex.balances("u").BTC.free, BTC("3")); // 3 × 100 € = 300 €, sitten saldo loppu
+  assert.equal(ex.balances("u").EUR.free, 0n);
+  assert.ok(ap.log.some((l) => l.includes("jäi väliin")));
+});
+
+test("autopilotti: hintarajat ostaa halvalla ja myy kalliilla", async () => {
+  const { createAutopilot } = await import("../src/autopilot.mjs");
+  const ex = mk();
+  fund(ex, "mm", "1000000", "100");
+  fund(ex, "u", "1000", "1");
+  fund(ex, "t", "100000", "10");
+  const post = (side, p) => ex.placeOrder({ acct: "mm", side, type: "limit", price: EUR(p), qty: BTC("10") });
+  post("sell", "90"); post("buy", "89");
+  ex.placeOrder({ acct: "t", side: "buy", type: "market", quoteBudget: EUR("1") }); // lastPrice 90
+  const ap = createAutopilot(ex, "u", "range", { buyBelow: 95, sellAbove: 120, euros: 100, sellFraction: 0.5, cooldownTicks: 0 });
+  ap.tick();
+  assert.ok(ex.balances("u").BTC.free > BTC("1"));
+  const before = ex.balances("u").BTC.free;
+  ex.placeOrder({ acct: "mm", side: "buy", type: "limit", price: EUR("130"), qty: BTC("1") });
+  ex.placeOrder({ acct: "t", side: "sell", type: "market", qty: BTC("0.5") }); // lastPrice 130
+  ap.tick();
+  assert.ok(ex.balances("u").BTC.free < before);
+});

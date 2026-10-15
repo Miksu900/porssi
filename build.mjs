@@ -5,6 +5,7 @@ mkdirSync("dist", { recursive: true });
 cpSync("site", "dist", { recursive: true });
 cpSync("src/engine.mjs", "dist/engine.mjs");
 cpSync("src/bots.mjs", "dist/bots.mjs");
+cpSync("src/autopilot.mjs", "dist/autopilot.mjs");
 
 const lessons = JSON.parse(readFileSync("site/opeta/oppitunnit.json", "utf8"));
 const nav = (root) => `<nav class="top"><a class="brand" href="${root}">Demopörssi</a><div><a href="${root}">Etusivu</a><a href="${root}kauppa/">Kauppa</a><a href="${root}opeta/" class="cur">Opeta</a><a href="${root}#palkkiot">Palkkiot</a><a href="${root}#tietoa">Tietoa</a></div></nav>`;
