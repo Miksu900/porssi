@@ -8,13 +8,28 @@ const BTCf = (u, d = 4) => fmtUnits(u, 8, d).replace(".", ",");
 
 let ex, mkt, series = [], side = "buy", type = "limit";
 
+// tallentaa jokaisesta kierroksesta hinnan ja kierroksen volyymin (kynttilöitä varten)
+function record(seen) {
+  let v = 0n;
+  const ts = ex.trades;
+  const fresh = ts.filter((t) => t.id > seen);
+  for (const t of fresh) v += t.qty;
+  if (ex.lastPrice) series.push({ p: Number(ex.lastPrice) / 100, v: Number(v) / 1e8 });
+  if (series.length > 600) series.shift();
+  return ts.length ? ts[ts.length - 1].id : seen;
+}
+let seenId = 0;
+
 function start() {
-  ex = new Exchange();
+  ex = new Exchange({ makerFeeBps: 0n, takerFeeBps: 5n });
   mkt = createMarket(ex, { start: 60000 });
-  for (let i = 0; i < 60; i++) mkt.tick(); // esikuumennus: jotta kirjassa on heti sisältöä
+  series = [];
+  for (let i = 0; i < 240; i++) {
+    mkt.tick();
+    seenId = record(seenId);
+  }
   ex.deposit(ME, "EUR", toUnits("10000", 2));
   ex.deposit(ME, "BTC", toUnits("0.5", 8));
-  series = ex.lastPrice ? [Number(ex.lastPrice) / 100] : [];
   $("price").value = ex.lastPrice ? fmtUnits(ex.lastPrice, 2) : "";
   render();
 }
@@ -34,7 +49,11 @@ function render() {
   const lp = ex.lastPrice;
   $("last").textContent = lp ? EUR(lp) + " €" : "–";
   if (series.length > 1) {
-    const ch = ((series.at(-1) - series[0]) / series[0]) * 100;
+    const ps = series.map((s) => s.p);
+    $("hi").textContent = Math.max(...ps).toLocaleString("fi-FI", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    $("lo").textContent = Math.min(...ps).toLocaleString("fi-FI", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    $("vol").textContent = series.reduce((s, x) => s + x.v, 0).toLocaleString("fi-FI", { maximumFractionDigits: 2 });
+    const ch = ((series.at(-1).p - series[0].p) / series[0].p) * 100;
     $("chg").textContent = (ch >= 0 ? "+" : "") + ch.toFixed(2).replace(".", ",") + " %";
     $("chg").className = "sub " + (ch >= 0 ? "up" : "down");
   }
@@ -71,31 +90,55 @@ function estimate() {
   try {
     if (type === "limit") {
       const p = parse("price", 2), q = parse("qty", 8);
-      t = `Arvo noin ${EUR((p * q) / ex.one)} € · palkkio 0,1–0,2 %`;
+      t = `Arvo noin ${EUR((p * q) / ex.one)} € · palkkio maker 0 % / taker 0,05 %`;
     } else if (side === "buy") t = $("budget").value ? "Ostaa parhaaseen hintaan, kunnes summa on käytetty." : "";
     else t = $("qty").value ? "Myy parhaaseen hintaan heti." : "";
   } catch { t = ""; }
   $("est").textContent = t;
 }
 
+const CANDLE = 4; // kierrosta per kynttilä
 function draw() {
   const c = $("chart"), g = c.getContext("2d"), W = c.width, H = c.height;
   g.clearRect(0, 0, W, H);
-  if (series.length < 2) return;
-  const lo = Math.min(...series), hi = Math.max(...series), pad = (hi - lo || 1) * 0.1;
-  const y = (v) => H - 10 - ((v - lo + pad) / (hi - lo + 2 * pad)) * (H - 20);
-  const x = (i) => (i / (series.length - 1)) * (W - 8) + 4;
-  const up = series.at(-1) >= series[0];
-  g.strokeStyle = up ? "#25c28a" : "#f0556a";
-  g.lineWidth = 3;
-  g.lineJoin = "round";
-  g.beginPath();
-  series.forEach((v, i) => (i ? g.lineTo(x(i), y(v)) : g.moveTo(x(i), y(v))));
-  g.stroke();
-  g.fillStyle = "#8b97ad";
-  g.font = "20px system-ui";
-  g.fillText(hi.toLocaleString("fi-FI", { maximumFractionDigits: 0 }), 6, 22);
-  g.fillText(lo.toLocaleString("fi-FI", { maximumFractionDigits: 0 }), 6, H - 6);
+  const cs = [];
+  for (let i = 0; i < series.length; i += CANDLE) {
+    const part = series.slice(i, i + CANDLE);
+    cs.push({ o: part[0].p, c: part.at(-1).p, h: Math.max(...part.map((x) => x.p)), l: Math.min(...part.map((x) => x.p)), v: part.reduce((s, x) => s + x.v, 0) });
+  }
+  const view = cs.slice(-48);
+  if (view.length < 2) return;
+  const axisW = 78, chartH = H * 0.78, volTop = H * 0.82;
+  const lo0 = Math.min(...view.map((k) => k.l)), hi0 = Math.max(...view.map((k) => k.h));
+  const pad = (hi0 - lo0 || 1) * 0.08, lo = lo0 - pad, hi = hi0 + pad;
+  const y = (v) => 6 + (1 - (v - lo) / (hi - lo)) * (chartH - 12);
+  const slot = (W - axisW) / view.length;
+  g.font = "20px ui-monospace, Menlo, Consolas, monospace";
+  g.textBaseline = "middle";
+  // ruudukko ja hinta-akseli
+  g.strokeStyle = "#1c2638"; g.lineWidth = 1; g.fillStyle = "#6f7c93";
+  for (let k = 0; k <= 4; k++) {
+    const v = lo + ((hi - lo) * k) / 4, yy = y(v);
+    g.beginPath(); g.moveTo(0, yy); g.lineTo(W - axisW, yy); g.stroke();
+    g.fillText(v.toLocaleString("fi-FI", { maximumFractionDigits: 0 }), W - axisW + 8, yy);
+  }
+  const vmax = Math.max(...view.map((k) => k.v), 1e-9);
+  view.forEach((k, i) => {
+    const x = i * slot + slot / 2, upc = k.c >= k.o, col = upc ? "#26d19a" : "#ff5c70";
+    g.strokeStyle = col; g.fillStyle = col; g.lineWidth = 2;
+    g.beginPath(); g.moveTo(x, y(k.h)); g.lineTo(x, y(k.l)); g.stroke();
+    const top = y(Math.max(k.o, k.c)), bh = Math.max(2, Math.abs(y(k.o) - y(k.c)));
+    g.fillRect(x - slot * 0.32, top, slot * 0.64, bh);
+    g.globalAlpha = 0.35;
+    const vh = (k.v / vmax) * (H - volTop - 4);
+    g.fillRect(x - slot * 0.32, H - vh - 2, slot * 0.64, vh);
+    g.globalAlpha = 1;
+  });
+  // viimeisen hinnan viiva
+  const last = view.at(-1).c, ly = y(last), upL = last >= view.at(-1).o;
+  g.setLineDash([6, 6]); g.strokeStyle = upL ? "#26d19a" : "#ff5c70"; g.beginPath(); g.moveTo(0, ly); g.lineTo(W - axisW, ly); g.stroke(); g.setLineDash([]);
+  g.fillStyle = upL ? "#26d19a" : "#ff5c70"; g.fillRect(W - axisW, ly - 14, axisW, 28);
+  g.fillStyle = "#04140e"; g.fillText(last.toLocaleString("fi-FI", { maximumFractionDigits: 0 }), W - axisW + 8, ly);
 }
 
 function setSide(s) {
@@ -148,8 +191,7 @@ $("f").addEventListener("submit", (e) => {
 
 setInterval(() => {
   mkt.tick();
-  if (ex.lastPrice) series.push(Number(ex.lastPrice) / 100);
-  if (series.length > 120) series.shift();
+  seenId = record(seenId);
   render();
 }, 1500);
 
