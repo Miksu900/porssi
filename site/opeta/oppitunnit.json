@@ -83,7 +83,8 @@
       "Onko liukuma kauppani kokoon nähden hyväksyttävä?"
      ]
     }
-   ]
+   ],
+   "tier": "ilmainen"
   },
   {
    "slug": "rajahinta-vai-markkina",
@@ -150,7 +151,8 @@
       "Onko palkkioero maker- ja taker-tilauksen välillä merkityksellinen?"
      ]
     }
-   ]
+   ],
+   "tier": "ilmainen"
   },
   {
    "slug": "osta-ja-pida",
@@ -216,7 +218,8 @@
       "Yleinen tapa on pitää osa salkusta pitkäaikaisessa ydinsijoituksessa ja käyttää vain pientä osaa aktiiviseen kaupankäyntiin. Näin voit oppia treidaamaan ilman, että virheet vaarantavat koko salkkua."
      ]
     }
-   ]
+   ],
+   "tier": "ilmainen"
   },
   {
    "slug": "saannollinen-ostaminen",
@@ -274,7 +277,8 @@
       "Päätä summa ja väli etukäteen, automatisoi osto ja älä muuta sääntöjä jokaisen hinnanvaihtelun jälkeen. Päätä myös etukäteen, milloin lopetat tai myyt: aikataulun, tavoitesumman tai elämäntilanteen perusteella."
      ]
     }
-   ]
+   ],
+   "tier": "ilmainen"
   },
   {
    "slug": "liukuvat-keskiarvot",
@@ -377,7 +381,8 @@
       "Onko minulla suunnitelma, jos signaali tulee myöhässä?"
      ]
     }
-   ]
+   ],
+   "tier": "ilmainen"
   },
   {
    "slug": "keskiarvoon-palautuminen",
@@ -474,7 +479,8 @@
       "Onko tavoite realistinen: paluu keskiarvoon, ei enempää?"
      ]
     }
-   ]
+   ],
+   "tier": "syva"
   },
   {
    "slug": "lapimurto",
@@ -570,7 +576,8 @@
       "Mikä on riski suhteessa mahdolliseen voittoon?"
      ]
     }
-   ]
+   ],
+   "tier": "syva"
   },
   {
    "slug": "rsi",
@@ -649,7 +656,8 @@
       "Missä on tappioraja, jos RSI pysyy matalana?"
      ]
     }
-   ]
+   ],
+   "tier": "syva"
   },
   {
    "slug": "tuki-ja-vastustasot",
@@ -726,7 +734,8 @@
      "levels": "range",
      "caption": "Keksitty data: vaakaviiva on pitkän tasaisen jakson yläraja. Kun hinta ylittää sen, vanha vastus muuttuu tueksi."
     }
-   ]
+   ],
+   "tier": "syva"
   },
   {
    "slug": "volyymi",
@@ -790,7 +799,8 @@
      "vol": true,
      "caption": "Keksitty data: läpimurron aikana volyymi on selvästi tavallista suurempi."
     }
-   ]
+   ],
+   "tier": "syva"
   },
   {
    "slug": "markkinatilan-tunnistus",
@@ -858,7 +868,8 @@
     "Markkinatila vaihtuu"
    ],
    "lahteet": [],
-   "er": true
+   "er": true,
+   "tier": "syva"
   },
   {
    "slug": "strategioiden-yhdistaminen",
@@ -925,7 +936,8 @@
     "Ylisovittamisen vaara kasvaa säännöillä"
    ],
    "lahteet": [],
-   "combo": true
+   "combo": true,
+   "tier": "syva"
   },
   {
    "slug": "oma-suunnitelma",
@@ -999,7 +1011,8 @@
       "Noudatanko suunnitelmaa myös tappion hetkellä?"
      ]
     }
-   ]
+   ],
+   "tier": "ilmainen"
   },
   {
    "slug": "tulosten-arviointi",
@@ -1065,7 +1078,8 @@
       "Mikä yksi asia parantaa tulosta eniten?"
      ]
     }
-   ]
+   ],
+   "tier": "syva"
   },
   {
    "slug": "riskinhallinta",
@@ -1136,7 +1150,8 @@
       "Mikä on tappioraja, jonka jälkeen pidän tauon?"
      ]
     }
-   ]
+   ],
+   "tier": "ilmainen"
   },
   {
    "slug": "positiokoko",
@@ -1201,7 +1216,8 @@
     "Tiukka tappioraja ei pienennä riskiä, jos koko kasvaa",
     "Tappion korjaus vaatii suuremman prosentin"
    ],
-   "lahteet": []
+   "lahteet": [],
+   "tier": "syva"
   },
   {
    "slug": "palkkiot",
@@ -1267,7 +1283,8 @@
       "Onko strategian keskimääräinen voitto kuluja suurempi?"
      ]
     }
-   ]
+   ],
+   "tier": "syva"
   },
   {
    "slug": "kauppapaivakirja",
@@ -1327,7 +1344,8 @@
     "Odotusarvo kertoo, onko strategia kannattava",
     "Katsaus kerran viikossa"
    ],
-   "lahteet": []
+   "lahteet": [],
+   "tier": "syva"
   },
   {
    "slug": "aktiivinen-kaupankaynti",
@@ -1397,7 +1415,8 @@
       "Noudatanko päivittäisiä rajojani?"
      ]
     }
-   ]
+   ],
+   "tier": "syva"
   },
   {
    "slug": "yleisimmat-virheet",
@@ -1447,7 +1466,8 @@
     "Korjaa yksi virhe kerrallaan",
     "Tauko on päätös"
    ],
-   "lahteet": []
+   "lahteet": [],
+   "tier": "syva"
   },
   {
    "slug": "strategian-testaus",
@@ -1516,7 +1536,8 @@
       "Onko tulos parempi kuin osta ja pidä?"
      ]
     }
-   ]
+   ],
+   "tier": "syva"
   }
  ]
 }

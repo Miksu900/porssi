@@ -66,14 +66,19 @@ function charts(l) {
 }
 function deep(l) {
   if (!l.syva) return "";
-  return `<div class="deep"><h2 class="dh"><span class="badge">Syväanalyysi</span>${esc(l.title)}</h2>${charts(l)}${l.strategia ? stratTable(l.strategia) : ""}${l.er ? erTable() : ""}${l.combo ? comboTable() : ""}${l.kulut ? feeTable() : ""}${l.riski ? riskTable() : ""}${l.syva.map((s) => `<h3>${esc(s.h)}</h3>${(s.p || []).map((p) => `<p>${esc(p)}</p>`).join("")}${s.ul ? `<ul>${s.ul.map((u) => `<li>${esc(u)}</li>`).join("")}</ul>` : ""}`).join("")}</div>`;
+  return `<div class="deep"><h2 class="dh"><span class="badge${l.tier === "ilmainen" ? " free" : ""}">${l.tier === "ilmainen" ? "Ilmainen syväanalyysi" : "Syväanalyysi"}</span>${esc(l.title)}</h2>${charts(l)}${l.strategia ? stratTable(l.strategia) : ""}${l.er ? erTable() : ""}${l.combo ? comboTable() : ""}${l.kulut ? feeTable() : ""}${l.riski ? riskTable() : ""}${l.tier === "syva" ? TIERNOTE : ""}${l.syva.map((s) => `<h3>${esc(s.h)}</h3>${(s.p || []).map((p) => `<p>${esc(p)}</p>`).join("")}${s.ul ? `<ul>${s.ul.map((u) => `<li>${esc(u)}</li>`).join("")}</ul>` : ""}`).join("")}${l.tier === "syva" ? interest(l.title) : ""}</div>`;
 }
+
+const CONTACT = "miika@eduskuntaseuranta.fi"; // vaihda tähän sivuston oma osoite, jos haluat
+const FOOT = (root) => `<footer class="wrap"><p>Demopörssi on kehitysvaiheessa oleva harjoitusprojekti. Oikea kaupankäyntipalvelu vaatisi viranomaisluvan, jota tällä sivustolla ei ole.</p><p><a href="${root}yhteistyo/">Yhteistyö ja mainonta</a> · <a href="https://github.com/Miksu900/porssi">Lähdekoodi</a></p></footer>`;
+const interest = (what) => `<form class="interest" onsubmit="return false"><label class="chk"><input type="checkbox" class="ik"> Haluan tiedon, kun maksullinen syväanalyysipaketti on valmis</label><a class="btn small ib" href="#" aria-disabled="true">Ilmoita kiinnostus</a><p class="sub">Painike avaa sähköpostin. Lähetät vain tämän viestin: "${what}". Mitään ei osteta eikä rekisteröidä.</p></form><script>(function(){var f=document.currentScript.previousElementSibling;var c=f.querySelector(".ik"),b=f.querySelector(".ib");function u(){b.href=c.checked?"mailto:${CONTACT}?subject="+encodeURIComponent("Kiinnostaa maksullinen syväanalyysipaketti")+"&body="+encodeURIComponent("Haluan tiedon, kun paketti on valmis. (${what})"):"#";b.setAttribute("aria-disabled",c.checked?"false":"true");}c.addEventListener("change",u);b.addEventListener("click",function(e){if(!c.checked){e.preventDefault();c.focus();}});u();})();</script>`;
+const TIERNOTE = `<p class="sub tiernote">Tämä syväanalyysi on nyt avoinna kaikille. Osa syväanalyyseistä siirtyy myöhemmin maksullisiksi, ja perusoppitunnit, demo, robotit ja Valmentaja pysyvät ilmaisina.</p>`;
 
 const disc = `<p class="notice">Tämä on opetusta, ei sijoitusneuvontaa. Esimerkit ovat yleisiä eivätkä suosituksia ostaa tai myydä mitään. Kryptovaluuttoihin liittyy suuri riski, ja sijoituksen voi menettää kokonaan.</p>`;
 
 writeFileSync("dist/opeta/index.html", head("../", "Opeta – Demopörssi", "Opetusta kaupankäynnin perusteista ja strategioista.") +
 `<section class="wrap block"><h1 class="h1">Opeta</h1><p class="lead">Lyhyitä oppitunteja kaupankäynnin perusteista ja eri strategioista. Jokaisen jälkeen voit kokeilla asiaa demossa valerahalla.</p>${disc}
-<p><a class="btn" href="vertailu/">Strategiavertailu eri markkinatilanteissa</a></p><div class="cols">${lessons.map((l, i) => `<a class="card lesson" href="${l.slug}/"><span class="sub">Oppitunti ${i + 1}</span><h3>${esc(l.title)}</h3><p>${esc(l.lead)}</p></a>`).join("")}</div></section></body></html>`);
+<p><a class="btn" href="vertailu/">Strategiavertailu eri markkinatilanteissa</a></p><div class="cols">${lessons.map((l, i) => `<a class="card lesson" href="${l.slug}/"><span class="sub">Oppitunti ${i + 1}${l.tier === "ilmainen" ? " · ilmainen syväanalyysi" : l.tier === "syva" ? " · syväanalyysi" : ""}</span><h3>${esc(l.title)}</h3><p>${esc(l.lead)}</p></a>`).join("")}</div></section>${FOOT("../")}</body></html>`);
 
 lessons.forEach((l, i) => {
   mkdirSync(`dist/opeta/${l.slug}`, { recursive: true });
@@ -83,7 +88,7 @@ lessons.forEach((l, i) => {
 ${l.sections.map((s) => `<h2>${esc(s.h)}</h2>${s.p.map((p) => `<p>${esc(p)}</p>`).join("")}`).join("")}
 <div class="card try"><h3>Kokeile demossa</h3><p>${esc(l.kokeile)}</p><a class="btn" href="../../kauppa/">Avaa kauppa</a></div>
 ${deep(l)}<h2>Muista</h2><ul>${l.avain.map((a) => `<li>${esc(a)}</li>`).join("")}</ul>${(l.lahteet || []).length ? `<p class="sub">Lähteet: ${l.lahteet.map((k) => `<a href="${sources[k].u}">${esc(sources[k].t)}</a>`).join(", ")}</p>` : ""}${disc}
-<div class="pager">${prev ? `<a href="../${prev.slug}/">← ${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a href="../${next.slug}/">${esc(next.title)} →</a>` : "<span></span>"}</div></article></body></html>`);
+<div class="pager">${prev ? `<a href="../${prev.slug}/">← ${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a href="../${next.slug}/">${esc(next.title)} →</a>` : "<span></span>"}</div></article>${FOOT("../../")}</body></html>`);
 });
 mkdirSync("dist/opeta/vertailu", { recursive: true });
 const keys = Object.keys(STRATS);
@@ -99,5 +104,14 @@ ${matrix("Tuotto", (r) => pc(r.ret))}${matrix("Suurin pudotus", (r) => num(r.dd)
 <tr><td>Läpimurto rauhallisen jakson jälkeen</td><td>Läpimurto, trendinseuranta</td><td>Varhainen palautumisstrategia voi ostaa liian aikaisin</td></tr>
 <tr><td>Romahdus</td><td>Strategiat, joilla on poistumissääntö</td><td>Osta ja pidä ilman riskinhallintaa, palautumisstrategiat</td></tr></table></div>
 <p class="sub">Taulukko on yleistys keksityn datan perusteella, ei sääntö. Oikea markkina voi käyttäytyä toisin.</p>
-<h2>Miten tätä luetaan</h2><ul><li>Vertaa aina tuottoa ja suurinta pudotusta yhdessä: pieni tuotto pienellä pudotuksella voi olla parempi kuin suuri tuotto suurella pudotuksella.</li><li>Katso kauppojen määrää: paljon kauppoja tarkoittaa paljon palkkioita ja paljon päätöksiä.</li><li>Huomaa, että yksikään strategia ei voita kaikissa markkinatilanteissa. Siksi markkinatilan tunnistaminen ja strategioiden yhdistäminen ovat osa taitoa.</li></ul></article></body></html>`);
+${interest("Strategiavertailu")}<h2>Miten tätä luetaan</h2><ul><li>Vertaa aina tuottoa ja suurinta pudotusta yhdessä: pieni tuotto pienellä pudotuksella voi olla parempi kuin suuri tuotto suurella pudotuksella.</li><li>Katso kauppojen määrää: paljon kauppoja tarkoittaa paljon palkkioita ja paljon päätöksiä.</li><li>Huomaa, että yksikään strategia ei voita kaikissa markkinatilanteissa. Siksi markkinatilan tunnistaminen ja strategioiden yhdistäminen ovat osa taitoa.</li></ul></article>${FOOT("../../")}</body></html>`);
+
+mkdirSync("dist/yhteistyo", { recursive: true });
+writeFileSync("dist/yhteistyo/index.html", head("../", "Yhteistyö ja mainonta – Demopörssi", "Miten sivustoa rahoitetaan ja miten yhteistyö merkitään.") +
+`<article class="wrap prose"><h1>Yhteistyö ja mainonta</h1>
+<p class="lead">Tämä sivusto on vielä pieni. Tähän on kirjattu etukäteen, miten yhteistyö hoidetaan, jotta lukija tietää aina, kuka sisällön takana on.</p>
+<h2>Mitä pysyy ilmaisena</h2><ul><li>Perusoppitunnit ja strategioiden esittelyt</li><li>Demopörssi, robotit ja Valmentaja</li><li>Seitsemän ilmaista syväanalyysia</li></ul>
+<h2>Mitä voi tulla maksulliseksi</h2><p>Osa syväanalyyseista (merkitty sivustolla) voi myöhemmin siirtyä maksulliseen pakettiin. Mitään maksua ei vielä ole, eikä sivustolla oteta vastaan maksuja. Kiinnostusta mitataan vapaaehtoisella sähköpostiviestillä.</p>
+<h2>Säännöt yhteistyölle</h2><ul><li>Mainos ja yhteistyö merkitään aina selvästi sanalla "Mainos" tai "Yhteistyössä".</li><li>Oppitunteja ei kirjoiteta sponsorin ohjeilla, eikä sponsoroitua sisältöä esitetä neutraalina opetuksena.</li><li>Oppitunneissa ei ole kumppanilinkkejä eikä kehotuksia ostaa tiettyä kryptovarausta tai palvelua.</li><li>Sivusto ei anna sijoitusneuvontaa. Sisältö on opetusta, ja esimerkit käyttävät keksittyä dataa.</li><li>Kryptoalan mainontaa koskevat säännöt tarkistetaan ennen kuin yhtään sellaista mainosta julkaistaan.</li></ul>
+<h2>Ota yhteyttä</h2><p><a href="mailto:${CONTACT}">${CONTACT}</a></p></article>${FOOT("../")}</body></html>`);
 console.log("dist valmis,", lessons.length, "oppituntia");
