@@ -7,7 +7,9 @@ cpSync("src/engine.mjs", "dist/engine.mjs");
 cpSync("src/bots.mjs", "dist/bots.mjs");
 cpSync("src/autopilot.mjs", "dist/autopilot.mjs");
 
-const lessons = JSON.parse(readFileSync("site/opeta/oppitunnit.json", "utf8"));
+const data = JSON.parse(readFileSync("site/opeta/oppitunnit.json", "utf8"));
+const lessons = data.oppitunnit;
+const sources = data.lahteet;
 const nav = (root) => `<nav class="top"><a class="brand" href="${root}">Demopörssi</a><div><a href="${root}">Etusivu</a><a href="${root}kauppa/">Kauppa</a><a href="${root}opeta/" class="cur">Opeta</a><a href="${root}#palkkiot">Palkkiot</a><a href="${root}#tietoa">Tietoa</a></div></nav>`;
 const head = (root, title, desc) => `<!doctype html><html lang="fi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><link rel="stylesheet" href="${root}style.css"></head><body class="site"><div class="demo">DEMO – ei oikeaa rahaa, ei oikeita kauppoja</div>${nav(root)}`;
 const disc = `<p class="notice">Tämä on opetusta, ei sijoitusneuvontaa. Esimerkit ovat yleisiä eivätkä suosituksia ostaa tai myydä mitään. Kryptovaluuttoihin liittyy suuri riski, ja sijoituksen voi menettää kokonaan.</p>`;
@@ -23,7 +25,7 @@ lessons.forEach((l, i) => {
 `<article class="wrap block read"><p class="sub"><a href="../">← Kaikki oppitunnit</a> · Oppitunti ${i + 1}/${lessons.length}</p><h1 class="h1">${esc(l.title)}</h1><p class="lead">${esc(l.lead)}</p>
 ${l.sections.map((s) => `<h2>${esc(s.h)}</h2>${s.p.map((p) => `<p>${esc(p)}</p>`).join("")}`).join("")}
 <div class="card try"><h3>Kokeile demossa</h3><p>${esc(l.kokeile)}</p><a class="btn" href="../../kauppa/">Avaa kauppa</a></div>
-<h2>Muista</h2><ul>${l.avain.map((a) => `<li>${esc(a)}</li>`).join("")}</ul>${disc}
+<h2>Muista</h2><ul>${l.avain.map((a) => `<li>${esc(a)}</li>`).join("")}</ul>${(l.lahteet || []).length ? `<p class="sub">Lähteet: ${l.lahteet.map((k) => `<a href="${sources[k].u}">${esc(sources[k].t)}</a>`).join(", ")}</p>` : ""}${disc}
 <div class="pager">${prev ? `<a href="../${prev.slug}/">← ${esc(prev.title)}</a>` : "<span></span>"}${next ? `<a href="../${next.slug}/">${esc(next.title)} →</a>` : "<span></span>"}</div></article></body></html>`);
 });
 console.log("dist valmis,", lessons.length, "oppituntia");

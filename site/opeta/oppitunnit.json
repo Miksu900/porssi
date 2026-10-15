@@ -1,35 +1,395 @@
-[
-{"slug":"tilauskirja","title":"Tilauskirja ja hintaero","lead":"Pörssin sydän on tilauskirja: lista ostajien ja myyjien tarjouksista. Kun ymmärrät sen, ymmärrät, miksi hinta liikkuu.","sections":[
-{"h":"Mitä kirjassa näkyy","p":["Ostotarjoukset (bid) ovat kirjan alaosassa ja myyntitarjoukset (ask) yläosassa. Korkein ostotarjous ja matalin myyntitarjous kohtaavat keskellä.","Jokaisella hintatasolla näkyy yhteenlaskettu määrä, jota kyseiseen hintaan ollaan valmiita ostamaan tai myymään."]},
-{"h":"Hintaero eli spread","p":["Hintaero on matalimman myyntihinnan ja korkeimman ostohinnan erotus. Jos haluat ostaa heti, maksat yleensä myyntihinnan. Jos haluat myydä heti, saat ostohinnan.","Hintaero on käytännössä kauppasi hinta, jonka maksat palkkioiden lisäksi. Kapea hintaero tarkoittaa, että markkina on likvidi."]},
-{"h":"Syvyys","p":["Kirjan syvyys kertoo, kuinka suuren tilauksen hinta kestää. Jos tasolla on vain vähän määrää, iso markkinatilaus syö useita tasoja ja toteutuu keskimäärin huonommalla hinnalla."]}],
-"kokeile":"Avaa kauppa ja katso tilauskirjaa. Laske, kuinka suuri hintaero on euroina ja prosentteina.","avain":["Ostotarjoukset alhaalla, myyntitarjoukset ylhäällä","Hintaero on piilokulu","Iso tilaus liikuttaa hintaa ohuessa kirjassa"]},
-{"slug":"rajahinta-vai-markkina","title":"Rajahinta vai markkinatilaus","lead":"Kaksi perustilaustyyppiä, joilla on eri hyödyt ja riskit.","sections":[
-{"h":"Markkinatilaus","p":["Toteutuu heti parhaaseen saatavilla olevaan hintaan. Saat varmuuden toteutumisesta, mutta et hinnasta: ohuessa kirjassa lopullinen hinta voi poiketa näkemästäsi."]},
-{"h":"Rajahintatilaus","p":["Asetat hinnan, jota huonommalla et kauppaa tee. Jos tilaus ei heti täsmää, se jää kirjaan odottamaan. Saat hinnan varmaksi, mutta et toteutumista: hinta ei välttämättä koskaan tule sinun tasollesi.","Kirjaan jäävä rajatilaus on usein halvempi palkkioltaan (maker), ja heti toteutuva maksaa enemmän (taker)."]},
-{"h":"Kumpi sopii milloin","p":["Kiire ja pieni summa: markkinatilaus on yksinkertainen. Iso summa tai tarkka hintatavoite: rajahinta antaa hallinnan."]}],
-"kokeile":"Tee demossa sama pieni osto sekä markkinatilauksena että rajatilauksena ja vertaa toteutunutta hintaa ja palkkiota.","avain":["Markkina: varma toteutuminen, epävarma hinta","Raja: varma hinta, epävarma toteutuminen","Maker- ja taker-palkkio voivat erota"]},
-{"slug":"osta-ja-pida","title":"Osta ja pidä","lead":"Yksi yksinkertaisimmista strategioista: ostat omaisuuden ja pidät sitä pitkään kaupan käymättä.","sections":[
-{"h":"Ajatus","p":["Strategia perustuu siihen, että et yritä ajoittaa markkinaa. Kauppoja on vähän, joten palkkioita ja veroseuraamuksia syntyy vähän."]},
-{"h":"Edut ja haitat","p":["Etu: yksinkertaisuus ja pienet kulut. Haitta: sinun on kestettävä isotkin hinnanvaihtelut, myös pitkät laskut. Mikään ei takaa, että hinta palaa entiselle tasolle.","Kryptovaluuttojen hinnat voivat vaihdella voimakkaasti, ja pahimmillaan sijoitus voi menettää arvonsa kokonaan."]},
-{"h":"Kysy itseltäsi","p":["Kuinka suuren tappion kestän ilman, että myyn paniikissa? Kuinka kauan voin jättää rahan sijoitukseen? Näihin vastaaminen on strategian ydin."]}],
-"kokeile":"Pidä demossa salkkua kokonaan koskematta ja seuraa, miten saldo muuttuu. Vertaa omaan aktiiviseen kaupankäyntiisi.","avain":["Vähän kauppoja, vähän kuluja","Vaatii pitkää pinnaa","Ei takuuta tuotosta"]},
-{"slug":"saannollinen-ostaminen","title":"Säännöllinen ostaminen","lead":"Sen sijaan että ostaisit kerralla, ostat saman rahasumman sovituin väliajoin hinnasta riippumatta. Strategiaa kutsutaan englanniksi nimellä dollar-cost averaging (DCA).","sections":[
-{"h":"Miten se toimii","p":["Ostat esimerkiksi 100 eurolla kuukaudessa. Kun hinta on matala, saat enemmän yksiköitä, ja kun se on korkea, vähemmän. Keskihinta asettuu jonnekin ääripäiden väliin."]},
-{"h":"Mitä se tekee ja mitä ei","p":["Se vähentää yksittäisen huonon ajoituksen riskiä ja tekee ostamisesta rutiinin. Se ei takaa voittoa eikä suojaa tappioilta, jos hinta laskee pitkään.","Jokaisesta ostosta syntyy palkkio, joten pienet erät ja korkea palkkio voivat syödä tuottoa."]}],
-"kokeile":"Osta demossa saman verran viiden minuutin välein ja laske keskihinta. Vertaa siihen, että olisit ostanut kerralla alussa.","avain":["Sama summa säännöllisesti","Tasoittaa ajoitusriskiä","Ei takaa voittoa"]},
-{"slug":"riskinhallinta","title":"Riskinhallinta","lead":"Kaupankäynnissä pitkään pysyminen ei ole kiinni siitä, kuinka usein olet oikeassa, vaan siitä, kuinka paljon menetät silloin kun olet väärässä.","sections":[
-{"h":"Positiokoko","p":["Päätä etukäteen, kuinka suuri osa salkusta menee yhteen kauppaan. Mitä suurempi osuus, sitä enemmän yksi virhe sattuu."]},
-{"h":"Tappioraja","p":["Tappioraja on hinta, jossa luovut positiosta, jos kauppa menee väärään suuntaan. Päätös tehdään ennen kauppaa, kun pää on kylmä, eikä vasta tappion keskellä.","Huomaa, että nopeassa liikkeessä hinta voi hypätä rajan yli, jolloin toteutunut hinta on huonompi kuin raja."]},
-{"h":"Hajautus","p":["Kaikkea ei kannata laittaa yhteen paikkaan. Hajautus pienentää yksittäisen kohteen riskiä, mutta ei poista markkinan yleistä riskiä."]}],
-"kokeile":"Päätä demossa ennen jokaista kauppaa, kuinka monta prosenttia salkusta riskeeraat ja missä hinnassa lopetat. Kirjaa ylös.","avain":["Päätä riski ennen kauppaa","Tappioraja ei takaa hintaa","Hajautus pienentää, ei poista riskiä"]},
-{"slug":"palkkiot","title":"Palkkiot ja kulut","lead":"Pienet prosentit kasvavat isoiksi, kun kauppoja on paljon.","sections":[
-{"h":"Maker ja taker","p":["Maker lisää likviditeettiä jättämällä tilauksen kirjaan. Taker ottaa likviditeettiä toteuttamalla tilauksen heti. Monissa pörsseissä maker maksaa vähemmän kuin taker."]},
-{"h":"Esimerkki","p":["Jos palkkio on 0,5 % per kauppa, ostat ja myyt, kulua syntyy noin 1 % kierrokselta, ennen hintaeroa. Hinnan on liikuttava vähintään tämän verran, jotta pääset omillesi.","Tarkista aina palkkiotaulukko ennen kauppaa. Palkkiot voivat riippua myös kuukausivolyymistä."]}],
-"kokeile":"Tee demossa viisi pientä kauppaa ja katso, paljonko palkkioita maksoit yhteensä.","avain":["Palkkiot kertautuvat kaupankäynnin määrän mukana","Maker on usein halvempi kuin taker","Hintaero on lisäkulu"]},
-{"slug":"aktiivinen-kaupankaynti","title":"Aktiivinen kaupankäynti ja mieli","lead":"Tiheä kaupankäynti vaatii enemmän kuin tekniikkaa. Se on myös oman käyttäytymisen hallintaa.","sections":[
-{"h":"Mitä aktiivinen tarkoittaa","p":["Aktiivinen kauppias tekee usein kauppoja ja yrittää hyötyä lyhyistä hinnanliikkeistä. Kulut, hintaero ja ajoitus painavat tässä enemmän kuin pitkäaikaisessa sijoittamisessa."]},
-{"h":"Yleisiä harhoja","p":["Tappion jahtaaminen: yritetään voittaa menetetty takaisin kasvattamalla panoksia. Ylisuuri itseluottamus: muutama onnistunut kauppa saa uskomaan, että taito on kovempi kuin se on. Pelko jäädä paitsi: ostetaan nousun jälkeen, kun hinta on jo korkea."]},
-{"h":"Pidä kirjaa","p":["Kirjaa jokaisen kaupan syy, riski ja tulos. Kuukauden päästä näet, noudatitko omia sääntöjäsi."]}],
-"kokeile":"Pidä demossa kauppapäiväkirjaa viikon ajan ja katso, kuinka usein poikkesit omasta suunnitelmastasi.","avain":["Kulut ja ajoitus painavat enemmän","Tunteet ohjaavat helposti virheisiin","Kirjanpito paljastaa omat tavat"]}
-]
+{
+ "lahteet": {
+  "capital": {
+   "t": "Capital.com: Moving average trading strategy",
+   "u": "https://capital.com/en-eu/learn/technical-analysis/moving-average"
+  },
+  "trendspider": {
+   "t": "TrendSpider: Moving average crossover strategies",
+   "u": "https://trendspider.com/learning-center/moving-average-crossover-strategies/"
+  },
+  "tradeideas": {
+   "t": "Trade Ideas: Learning Center, trading strategies",
+   "u": "https://www.trade-ideas.com/learning-center/trading-strategies/"
+  }
+ },
+ "oppitunnit": [
+  {
+   "slug": "tilauskirja",
+   "title": "Tilauskirja ja hintaero",
+   "lead": "Pörssin sydän on tilauskirja: lista ostajien ja myyjien tarjouksista. Kun ymmärrät sen, ymmärrät, miksi hinta liikkuu.",
+   "sections": [
+    {
+     "h": "Mitä kirjassa näkyy",
+     "p": [
+      "Ostotarjoukset (bid) ovat kirjan alaosassa ja myyntitarjoukset (ask) yläosassa. Korkein ostotarjous ja matalin myyntitarjous kohtaavat keskellä.",
+      "Jokaisella hintatasolla näkyy yhteenlaskettu määrä, jota kyseiseen hintaan ollaan valmiita ostamaan tai myymään."
+     ]
+    },
+    {
+     "h": "Hintaero eli spread",
+     "p": [
+      "Hintaero on matalimman myyntihinnan ja korkeimman ostohinnan erotus. Jos haluat ostaa heti, maksat yleensä myyntihinnan. Jos haluat myydä heti, saat ostohinnan.",
+      "Hintaero on käytännössä kauppasi hinta, jonka maksat palkkioiden lisäksi. Kapea hintaero tarkoittaa, että markkina on likvidi."
+     ]
+    },
+    {
+     "h": "Syvyys",
+     "p": [
+      "Kirjan syvyys kertoo, kuinka suuren tilauksen hinta kestää. Jos tasolla on vain vähän määrää, iso markkinatilaus syö useita tasoja ja toteutuu keskimäärin huonommalla hinnalla."
+     ]
+    }
+   ],
+   "kokeile": "Avaa kauppa ja katso tilauskirjaa. Laske, kuinka suuri hintaero on euroina ja prosentteina.",
+   "avain": [
+    "Ostotarjoukset alhaalla, myyntitarjoukset ylhäällä",
+    "Hintaero on piilokulu",
+    "Iso tilaus liikuttaa hintaa ohuessa kirjassa"
+   ]
+  },
+  {
+   "slug": "rajahinta-vai-markkina",
+   "title": "Rajahinta vai markkinatilaus",
+   "lead": "Kaksi perustilaustyyppiä, joilla on eri hyödyt ja riskit.",
+   "sections": [
+    {
+     "h": "Markkinatilaus",
+     "p": [
+      "Toteutuu heti parhaaseen saatavilla olevaan hintaan. Saat varmuuden toteutumisesta, mutta et hinnasta: ohuessa kirjassa lopullinen hinta voi poiketa näkemästäsi."
+     ]
+    },
+    {
+     "h": "Rajahintatilaus",
+     "p": [
+      "Asetat hinnan, jota huonommalla et kauppaa tee. Jos tilaus ei heti täsmää, se jää kirjaan odottamaan. Saat hinnan varmaksi, mutta et toteutumista: hinta ei välttämättä koskaan tule sinun tasollesi.",
+      "Kirjaan jäävä rajatilaus on usein halvempi palkkioltaan (maker), ja heti toteutuva maksaa enemmän (taker)."
+     ]
+    },
+    {
+     "h": "Kumpi sopii milloin",
+     "p": [
+      "Kiire ja pieni summa: markkinatilaus on yksinkertainen. Iso summa tai tarkka hintatavoite: rajahinta antaa hallinnan."
+     ]
+    }
+   ],
+   "kokeile": "Tee demossa sama pieni osto sekä markkinatilauksena että rajatilauksena ja vertaa toteutunutta hintaa ja palkkiota.",
+   "avain": [
+    "Markkina: varma toteutuminen, epävarma hinta",
+    "Raja: varma hinta, epävarma toteutuminen",
+    "Maker- ja taker-palkkio voivat erota"
+   ]
+  },
+  {
+   "slug": "osta-ja-pida",
+   "title": "Osta ja pidä",
+   "lead": "Yksi yksinkertaisimmista strategioista: ostat omaisuuden ja pidät sitä pitkään kaupan käymättä.",
+   "sections": [
+    {
+     "h": "Ajatus",
+     "p": [
+      "Strategia perustuu siihen, että et yritä ajoittaa markkinaa. Kauppoja on vähän, joten palkkioita ja veroseuraamuksia syntyy vähän."
+     ]
+    },
+    {
+     "h": "Edut ja haitat",
+     "p": [
+      "Etu: yksinkertaisuus ja pienet kulut. Haitta: sinun on kestettävä isotkin hinnanvaihtelut, myös pitkät laskut. Mikään ei takaa, että hinta palaa entiselle tasolle.",
+      "Kryptovaluuttojen hinnat voivat vaihdella voimakkaasti, ja pahimmillaan sijoitus voi menettää arvonsa kokonaan."
+     ]
+    },
+    {
+     "h": "Kysy itseltäsi",
+     "p": [
+      "Kuinka suuren tappion kestän ilman, että myyn paniikissa? Kuinka kauan voin jättää rahan sijoitukseen? Näihin vastaaminen on strategian ydin."
+     ]
+    }
+   ],
+   "kokeile": "Pidä demossa salkkua kokonaan koskematta ja seuraa, miten saldo muuttuu. Vertaa omaan aktiiviseen kaupankäyntiisi.",
+   "avain": [
+    "Vähän kauppoja, vähän kuluja",
+    "Vaatii pitkää pinnaa",
+    "Ei takuuta tuotosta"
+   ]
+  },
+  {
+   "slug": "saannollinen-ostaminen",
+   "title": "Säännöllinen ostaminen",
+   "lead": "Sen sijaan että ostaisit kerralla, ostat saman rahasumman sovituin väliajoin hinnasta riippumatta. Strategiaa kutsutaan englanniksi nimellä dollar-cost averaging (DCA).",
+   "sections": [
+    {
+     "h": "Miten se toimii",
+     "p": [
+      "Ostat esimerkiksi 100 eurolla kuukaudessa. Kun hinta on matala, saat enemmän yksiköitä, ja kun se on korkea, vähemmän. Keskihinta asettuu jonnekin ääripäiden väliin."
+     ]
+    },
+    {
+     "h": "Mitä se tekee ja mitä ei",
+     "p": [
+      "Se vähentää yksittäisen huonon ajoituksen riskiä ja tekee ostamisesta rutiinin. Se ei takaa voittoa eikä suojaa tappioilta, jos hinta laskee pitkään.",
+      "Jokaisesta ostosta syntyy palkkio, joten pienet erät ja korkea palkkio voivat syödä tuottoa."
+     ]
+    }
+   ],
+   "kokeile": "Osta demossa saman verran viiden minuutin välein ja laske keskihinta. Vertaa siihen, että olisit ostanut kerralla alussa.",
+   "avain": [
+    "Sama summa säännöllisesti",
+    "Tasoittaa ajoitusriskiä",
+    "Ei takaa voittoa"
+   ]
+  },
+  {
+   "slug": "liukuvat-keskiarvot",
+   "title": "Trendin seuraaminen: liukuvien keskiarvojen leikkaus",
+   "lead": "Yksi tunnetuimmista strategioista: kaksi keskiarvoa, joiden leikkaus on kauppasignaali.",
+   "sections": [
+    {
+     "h": "Liukuva keskiarvo",
+     "p": [
+      "Liukuva keskiarvo tasoittaa hintaa laskemalla viimeisimpien hintojen keskiarvon. Yksinkertaisessa keskiarvossa (SMA) kaikki hinnat painavat saman verran. Eksponentiaalisessa (EMA) tuoreet hinnat painavat enemmän, joten se reagoi nopeammin, mutta voi antaa enemmän vääriä signaaleja."
+     ]
+    },
+    {
+     "h": "Leikkaus",
+     "p": [
+      "Strategiassa on nopea ja hidas keskiarvo. Kun nopea nousee hitaan yläpuolelle, se tulkitaan ostosignaaliksi, ja kun se putoaa hitaan alle, myyntisignaaliksi.",
+      "Yleisiä jaksopareja ovat 9/21 (lyhyt aikaväli), 20/50 (swing-kauppa) ja 50/200 (pitkä aikaväli). 50/200-ylitystä kutsutaan nimellä golden cross ja alitusta death cross."
+     ]
+    },
+    {
+     "h": "Heikkoudet",
+     "p": [
+      "Signaali tulee viiveellä, joten sisään- ja ulostulo voivat olla myöhässä. Strategia toimii huonosti sivuttaisliikkeessä, jossa keskiarvot leikkaavat toistuvasti ja tuottavat vääriä signaaleja. Siksi leikkaukselle haetaan usein vahvistusta esimerkiksi volyymistä tai RSI:stä."
+     ]
+    }
+   ],
+   "kokeile": "Valitse kaupassa robotiksi 'Liukuvien keskiarvojen leikkaus' ja seuraa, milloin se ostaa ja myy. Katso, mitä tapahtuu, kun hinta liikkuu sivuttain.",
+   "avain": [
+    "Nopea ylittää hitaan: ostosignaali",
+    "Nopea alittaa hitaan: myyntisignaali",
+    "Viive ja väärät signaalit sivuttaismarkkinassa"
+   ],
+   "lahteet": [
+    "capital",
+    "trendspider"
+   ]
+  },
+  {
+   "slug": "keskiarvoon-palautuminen",
+   "title": "Keskiarvoon palautuminen",
+   "lead": "Päinvastainen ajatus kuin trendin seuraamisessa: kun hinta on karannut kauas keskiarvostaan, odotetaan sen palaavan.",
+   "sections": [
+    {
+     "h": "Ajatus",
+     "p": [
+      "Strategia yrittää kaupata liioittelua vastaan. Kun hinta on pudonnut selvästi keskiarvonsa alle, ostetaan. Kun se on noussut selvästi sen yli, myydään."
+     ]
+    },
+    {
+     "h": "Riski",
+     "p": [
+      "Strategia epäonnistuu voimakkaassa trendissä. Jos hinta ei palaa keskiarvoon vaan jatkaa samaan suuntaan, ostat yhä halvemmalla ja tappio kasvaa. Siksi tappioraja ja positiokoko ovat tässä erityisen tärkeitä."
+     ]
+    },
+    {
+     "h": "Verrattuna trendin seuraamiseen",
+     "p": [
+      "Trendin seuraaminen toimii yleensä paremmin selkeissä trendeissä ja keskiarvoon palautuminen sivuttaisessa markkinassa. Käytännössä on vaikea tietää etukäteen, kumpi tilanne on käsillä."
+     ]
+    }
+   ],
+   "kokeile": "Käynnistä robotti 'Keskiarvoon palautuminen' ja vertaa sen tulosta liukuvien keskiarvojen robottiin samassa markkinassa.",
+   "avain": [
+    "Osta kun hinta selvästi keskiarvon alla",
+    "Heikko voimakkaassa trendissä",
+    "Tappioraja on pakollinen"
+   ],
+   "lahteet": [
+    "tradeideas"
+   ]
+  },
+  {
+   "slug": "lapimurto",
+   "title": "Läpimurto",
+   "lead": "Ostetaan, kun hinta ylittää määritellyn tason, ja oletetaan, että liike jatkuu.",
+   "sections": [
+    {
+     "h": "Ajatus",
+     "p": [
+      "Läpimurtostrategiassa määritellään taso, esimerkiksi viime aikojen korkein hinta. Kun hinta ylittää sen, astutaan sisään. Ajatuksena on, että murtunut taso vapauttaa uuden liikkeen."
+     ]
+    },
+    {
+     "h": "Riski",
+     "p": [
+      "Suurin riski on väärä läpimurto: hinta ylittää tason hetkeksi ja palaa takaisin. Silloin ostat korkealta ja jäät tappiolle. Siksi läpimurtoa usein vahvistetaan esimerkiksi volyymilla."
+     ]
+    },
+    {
+     "h": "Taso ja aikaväli",
+     "p": [
+      "Mitä pidemmältä ajalta ylärajan määrittelet, sitä harvemmin signaaleja tulee mutta sitä merkittävämpiä ne voivat olla. Lyhyt ikkuna antaa paljon signaaleja ja paljon kohinaa."
+     ]
+    }
+   ],
+   "kokeile": "Käynnistä 'Läpimurto'-robotti eri ikkunapituuksilla ja laske, kuinka monta kauppaa se tekee ja paljonko palkkioita menee.",
+   "avain": [
+    "Osta kun hinta ylittää ylärajan",
+    "Väärät läpimurrot ovat pääriski",
+    "Ikkunan pituus muuttaa signaalien määrää"
+   ],
+   "lahteet": [
+    "tradeideas"
+   ]
+  },
+  {
+   "slug": "rsi",
+   "title": "RSI-indikaattori",
+   "lead": "RSI (Relative Strength Index) mittaa, kuinka voimakkaasti hinta on viime aikoina noussut tai laskenut.",
+   "sections": [
+    {
+     "h": "Miten se lasketaan",
+     "p": [
+      "RSI saa arvoja 0:n ja 100:n välillä. Se lasketaan vertaamalla viimeaikaisten nousujen ja laskujen keskikokoa. Yleisesti käytetty jakso on 14 hintapistettä."
+     ]
+    },
+    {
+     "h": "Tulkinta",
+     "p": [
+      "Perinteisesti yli 70 tulkitaan yliostetuksi ja alle 30 ylimyydyksi. Tämä on yleinen nyrkkisääntö, ei lakia. Voimakkaassa trendissä RSI voi pysyä ylhäällä tai alhaalla pitkään.",
+      "RSI:tä käytetään usein muiden signaalien vahvistamiseen, ei yksin."
+     ]
+    }
+   ],
+   "kokeile": "Käynnistä RSI-robotti ja katso lokista, millä RSI-arvolla se osti ja myi. Kokeile erilaisia rajoja.",
+   "avain": [
+    "Arvo 0–100",
+    "Yli 70 yliostettu, alle 30 ylimyyty (nyrkkisääntö)",
+    "Toimii parhaiten vahvistuksena"
+   ],
+   "lahteet": []
+  },
+  {
+   "slug": "riskinhallinta",
+   "title": "Riskinhallinta",
+   "lead": "Kaupankäynnissä pitkään pysyminen ei ole kiinni siitä, kuinka usein olet oikeassa, vaan siitä, kuinka paljon menetät silloin kun olet väärässä.",
+   "sections": [
+    {
+     "h": "Positiokoko",
+     "p": [
+      "Päätä etukäteen, kuinka suuri osa salkusta menee yhteen kauppaan. Mitä suurempi osuus, sitä enemmän yksi virhe sattuu."
+     ]
+    },
+    {
+     "h": "Tappioraja",
+     "p": [
+      "Tappioraja on hinta, jossa luovut positiosta, jos kauppa menee väärään suuntaan. Päätös tehdään ennen kauppaa, kun pää on kylmä, eikä vasta tappion keskellä.",
+      "Huomaa, että nopeassa liikkeessä hinta voi hypätä rajan yli, jolloin toteutunut hinta on huonompi kuin raja."
+     ]
+    },
+    {
+     "h": "Hajautus",
+     "p": [
+      "Kaikkea ei kannata laittaa yhteen paikkaan. Hajautus pienentää yksittäisen kohteen riskiä, mutta ei poista markkinan yleistä riskiä."
+     ]
+    }
+   ],
+   "kokeile": "Päätä demossa ennen jokaista kauppaa, kuinka monta prosenttia salkusta riskeeraat ja missä hinnassa lopetat. Kirjaa ylös.",
+   "avain": [
+    "Päätä riski ennen kauppaa",
+    "Tappioraja ei takaa hintaa",
+    "Hajautus pienentää, ei poista riskiä"
+   ]
+  },
+  {
+   "slug": "palkkiot",
+   "title": "Palkkiot ja kulut",
+   "lead": "Pienet prosentit kasvavat isoiksi, kun kauppoja on paljon.",
+   "sections": [
+    {
+     "h": "Maker ja taker",
+     "p": [
+      "Maker lisää likviditeettiä jättämällä tilauksen kirjaan. Taker ottaa likviditeettiä toteuttamalla tilauksen heti. Monissa pörsseissä maker maksaa vähemmän kuin taker."
+     ]
+    },
+    {
+     "h": "Esimerkki",
+     "p": [
+      "Jos palkkio on 0,5 % per kauppa, ostat ja myyt, kulua syntyy noin 1 % kierrokselta, ennen hintaeroa. Hinnan on liikuttava vähintään tämän verran, jotta pääset omillesi.",
+      "Tarkista aina palkkiotaulukko ennen kauppaa. Palkkiot voivat riippua myös kuukausivolyymistä."
+     ]
+    }
+   ],
+   "kokeile": "Tee demossa viisi pientä kauppaa ja katso, paljonko palkkioita maksoit yhteensä.",
+   "avain": [
+    "Palkkiot kertautuvat kaupankäynnin määrän mukana",
+    "Maker on usein halvempi kuin taker",
+    "Hintaero on lisäkulu"
+   ]
+  },
+  {
+   "slug": "aktiivinen-kaupankaynti",
+   "title": "Aktiivinen kaupankäynti ja mieli",
+   "lead": "Tiheä kaupankäynti vaatii enemmän kuin tekniikkaa. Se on myös oman käyttäytymisen hallintaa.",
+   "sections": [
+    {
+     "h": "Mitä aktiivinen tarkoittaa",
+     "p": [
+      "Aktiivinen kauppias tekee usein kauppoja ja yrittää hyötyä lyhyistä hinnanliikkeistä. Kulut, hintaero ja ajoitus painavat tässä enemmän kuin pitkäaikaisessa sijoittamisessa."
+     ]
+    },
+    {
+     "h": "Yleisiä harhoja",
+     "p": [
+      "Tappion jahtaaminen: yritetään voittaa menetetty takaisin kasvattamalla panoksia. Ylisuuri itseluottamus: muutama onnistunut kauppa saa uskomaan, että taito on kovempi kuin se on. Pelko jäädä paitsi: ostetaan nousun jälkeen, kun hinta on jo korkea."
+     ]
+    },
+    {
+     "h": "Pidä kirjaa",
+     "p": [
+      "Kirjaa jokaisen kaupan syy, riski ja tulos. Kuukauden päästä näet, noudatitko omia sääntöjäsi."
+     ]
+    }
+   ],
+   "kokeile": "Pidä demossa kauppapäiväkirjaa viikon ajan ja katso, kuinka usein poikkesit omasta suunnitelmastasi.",
+   "avain": [
+    "Kulut ja ajoitus painavat enemmän",
+    "Tunteet ohjaavat helposti virheisiin",
+    "Kirjanpito paljastaa omat tavat"
+   ]
+  },
+  {
+   "slug": "strategian-testaus",
+   "title": "Miten strategiaa testataan",
+   "lead": "Strategia kuulostaa hyvältä, kunnes sitä kokeillaan. Testaus kertoo, kestääkö idea todellisuuden.",
+   "sections": [
+    {
+     "h": "Harjoitusalusta",
+     "p": [
+      "Hyvä tapa aloittaa on testata strategiaa demotilillä ennen oikeaa rahaa. Tämä sivusto on juuri sitä varten. Muista silti, että demon hinnat ovat satunnaisia robottien tuottamia hintoja, eivät oikeita markkinoita."
+     ]
+    },
+    {
+     "h": "Menneisyys ei takaa tulevaa",
+     "p": [
+      "Se, että strategia olisi toiminut aiemmin, ei ole luotettava merkki siitä, että se toimii jatkossa. Strategia voi sopeutua liikaa menneeseen dataan, ja se näyttää silloin paremmalta kuin on."
+     ]
+    },
+    {
+     "h": "Mitä seurata",
+     "p": [
+      "Katso kokonaistuloksen lisäksi suurinta tappiota, kauppojen määrää ja palkkioiden osuutta. Vertaa tulosta aina yksinkertaiseen vaihtoehtoon, kuten 'osta ja pidä'."
+     ]
+    }
+   ],
+   "kokeile": "Aja kaksi eri robottia saman ajan ja vertaa 'Tulos alusta' -lukua sekä siihen, mitä osta ja pidä olisi tuottanut.",
+   "avain": [
+    "Testaa ensin demossa",
+    "Menneisyys ei takaa tulevaa",
+    "Vertaa aina osta ja pidä -vaihtoehtoon"
+   ],
+   "lahteet": [
+    "capital"
+   ]
+  }
+ ]
+}

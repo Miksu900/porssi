@@ -40,7 +40,7 @@
   </div>
     <div id="robot" hidden>
       <label>Strategia
-        <select id="strat"><option value="dca">Säännöllinen ostaminen</option><option value="range">Hintarajat</option><option value="hold">Osta ja pidä (ei kauppoja)</option></select>
+        <select id="strat"><option value="dca">Säännöllinen ostaminen</option><option value="range">Hintarajat</option><option value="ma">Liukuvien keskiarvojen leikkaus</option><option value="meanrev">Keskiarvoon palautuminen</option><option value="breakout">Läpimurto</option><option value="rsi">RSI-indikaattori</option><option value="hold">Osta ja pidä (ei kauppoja)</option></select>
       </label>
       <p class="sub" id="sdesc"></p>
       <div id="p-dca">
@@ -53,6 +53,27 @@
         <label>Oston koko (€)<input id="r-eur" inputmode="decimal" value="500"></label>
         <label>Myytävä osuus (%)<input id="r-frac" inputmode="numeric" value="25"></label>
       </div>
+      <div id="p-ma" hidden>
+        <label>Nopea keskiarvo (kierrosta)<input id="m-fast" inputmode="numeric" value="5"></label>
+        <label>Hidas keskiarvo (kierrosta)<input id="m-slow" inputmode="numeric" value="20"></label>
+        <label>Oston koko (€)<input id="m-eur" inputmode="decimal" value="500"></label>
+      </div>
+      <div id="p-meanrev" hidden>
+        <label>Keskiarvon jakso (kierrosta)<input id="v-per" inputmode="numeric" value="20"></label>
+        <label>Poikkeama (%)<input id="v-th" inputmode="decimal" value="0.5"></label>
+        <label>Oston koko (€)<input id="v-eur" inputmode="decimal" value="500"></label>
+      </div>
+      <div id="p-breakout" hidden>
+        <label>Ikkuna (kierrosta)<input id="b-win" inputmode="numeric" value="20"></label>
+        <label>Oston koko (€)<input id="b-eur" inputmode="decimal" value="500"></label>
+      </div>
+      <div id="p-rsi" hidden>
+        <label>RSI-jakso (kierrosta)<input id="i-per" inputmode="numeric" value="14"></label>
+        <label>Osta kun RSI alle<input id="i-low" inputmode="numeric" value="30"></label>
+        <label>Myy kun RSI yli<input id="i-high" inputmode="numeric" value="70"></label>
+        <label>Oston koko (€)<input id="i-eur" inputmode="decimal" value="500"></label>
+      </div>
+      <p class="sub">Yksi kierros on noin 1,5 sekuntia. <a href="../opeta/">Lue strategioista</a></p>
       <button class="go" id="rgo" type="button">Käynnistä robotti</button>
       <div id="rstat" class="sub"></div>
       <div id="rlog" class="rlog"></div>
