@@ -4,66 +4,81 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Demopörssi – harjoittele valerahalla</title>
+<title>Demopörssi – opettele kaupankäynti ilman riskiä</title>
+<meta name="description" content="Kokeile kryptopörssin kaupankäyntiä valerahalla. Ei talletuksia, ei oikeaa rahaa.">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="site">
 <div class="demo">DEMO – ei oikeaa rahaa, ei oikeita kauppoja</div>
-<header>
-  <div class="pair"><b>BTC/EUR</b><span class="sub">Bitcoin</span></div>
-  <div class="px"><div id="last" class="last">–</div><span id="chg" class="sub"></span></div>
-  <div class="stats">
-    <div><span class="sub">Ylin</span><b id="hi">–</b></div>
-    <div><span class="sub">Alin</span><b id="lo">–</b></div>
-    <div><span class="sub">Volyymi BTC</span><b id="vol">–</b></div>
-    <div><span class="sub">Palkkio maker/taker</span><b>0 % / 0,05 %</b></div>
+<nav class="top"><a class="brand" href="./">Demopörssi</a><div><a href="./" class="cur">Etusivu</a><a href="kauppa/">Kauppa</a><a href="#palkkiot">Palkkiot</a><a href="#tietoa">Tietoa</a></div></nav>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Opettele kaupankäynti ilman riskiä</h1>
+    <p class="lead">Kokeile oikean pörssin tilauskirjaa, kynttiläkäyrää ja kauppoja 10 000 euron valerahalla. Mitään ei tarvitse tallettaa eikä rekisteröityä.</p>
+    <div class="cta"><a class="btn" href="kauppa/">Aloita kaupankäynti</a><a class="btn ghost" href="#miten">Miten tämä toimii?</a></div>
+    <div class="live card">
+      <div><span class="sub">BTC/EUR (demo)</span><div id="lp" class="big">–</div></div>
+      <div id="lc" class="sub"></div>
+      <canvas id="spark" width="600" height="120"></canvas>
+    </div>
   </div>
-</header>
-<main>
-  <div class="grid">
-  <section class="card"><canvas id="chart" width="900" height="420"></canvas></section>
+</section>
 
-  <section class="card form">
-    <div class="tabs" id="side"><button data-s="buy" class="on buy">Osta</button><button data-s="sell" class="sell">Myy</button></div>
-    <div class="tabs small" id="type"><button data-t="limit" class="on">Rajahinta</button><button data-t="market">Markkina</button></div>
-    <form id="f">
-      <label id="lPrice">Hinta (€)<input id="price" inputmode="decimal" autocomplete="off"></label>
-      <label id="lQty">Määrä (BTC)<input id="qty" inputmode="decimal" autocomplete="off"></label>
-      <label id="lBudget" hidden>Käytettävä summa (€)<input id="budget" inputmode="decimal" autocomplete="off"></label>
-      <div id="est" class="sub"></div>
-      <button class="go buy" id="go">Osta BTC</button>
-      <div id="msg" role="status"></div>
-    </form>
-  </section>
+<section class="wrap block" id="miten">
+  <h2>Miten tämä toimii?</h2>
+  <div class="cols">
+    <div class="card"><h3>1. Saat valeraha-saldon</h3><p>Aloitat 10 000 eurolla ja 0,5 bitcoinilla. Rahat ovat keksittyjä.</p></div>
+    <div class="card"><h3>2. Teet kauppoja</h3><p>Osta ja myy rajahinnalla tai markkinahintaan. Tilaukset käyvät samassa tilauskirjassa kuin robottien tilaukset.</p></div>
+    <div class="card"><h3>3. Opit ilman riskiä</h3><p>Näet, miten tilauskirja, hintaero ja palkkiot vaikuttavat kauppaan. Voit aloittaa alusta milloin tahansa.</p></div>
+  </div>
+</section>
 
-  <section class="card">
-    <h2>Saldo</h2>
-    <div class="bal"><div><span class="sub">Vapaa EUR</span><b id="eurF">–</b></div><div><span class="sub">Vapaa BTC</span><b id="btcF">–</b></div>
-    <div><span class="sub">Varattu EUR</span><b id="eurL">–</b></div><div><span class="sub">Varattu BTC</span><b id="btcL">–</b></div></div>
-    <div class="sub">Yhteensä: <b id="total">–</b> € <button class="lnk" id="reset">Aloita alusta</button></div>
-  </section>
+<section class="wrap block" id="palkkiot">
+  <h2>Palkkiot</h2>
+  <p>Demossa maker-palkkio (kirjaan jäävä tilaus) on 0 % ja taker-palkkio (heti toteutuva tilaus) 0,05 %. Vertailu muihin peruskerroksessa:</p>
+  <div class="tbl">
+    <div class="trow th"><span>Pörssi</span><span>Maker</span><span>Taker</span></div>
+    <div class="trow best"><span>Demopörssi</span><span>0 %</span><span>0,05 %</span></div>
+    <div class="trow"><span>Binance.US</span><span>0 %</span><span>0,02 %</span></div>
+    <div class="trow"><span>Bitstamp</span><span>0,30 %</span><span>0,40 %</span></div>
+    <div class="trow"><span>Kraken Pro</span><span>0,40 %</span><span>0,80 %</span></div>
+    <div class="trow"><span>Coinbase Advanced</span><span>0,50 %</span><span>0,90 %</span></div>
+  </div>
+  <p class="sub">Lähde: <a href="https://tokentax.co/blog/crypto-exchange-with-lowest-fees">TokenTax, tarkistettu 3.10.2026</a>. Binance.US ei toimi kaikkialla. Demon palkkiot eivät lupaa mitään oikean pörssin palkkioista.</p>
+</section>
 
-  <section class="card">
-    <h2>Tilauskirja</h2>
-    <div class="book"><div class="hd"><span>Hinta €</span><span>Määrä BTC</span></div><div id="asks"></div><div id="spread" class="spread"></div><div id="bids"></div></div>
-  </section>
+<section class="wrap block" id="tietoa">
+  <h2>Tietoa</h2>
+  <div class="cols two">
+    <div class="card"><h3>Mikä tämä on?</h3><p>Tekninen demo kryptopörssistä. Täsmäysmoottori, tilauskirja ja robotit toimivat aidosti selaimessasi. Lähdekoodi on avoin: <a href="https://github.com/Miksu900/porssi">GitHub</a>.</p></div>
+    <div class="card"><h3>Mitä tämä ei ole?</h3><p>Tämä ei ole oikea pörssi. Sivusto ei ota vastaan talletuksia, ei säilytä kenenkään varoja eikä tarjoa sijoitusneuvontaa. Hinnat ovat satunnaisia, eivät oikeita markkinahintoja.</p></div>
+  </div>
+</section>
 
-  <section class="card">
-    <h2>Omat avoimet tilaukset</h2>
-    <div id="open" class="sub">Ei avoimia tilauksia.</div>
-  </section>
-
-  <section class="card">
-    <h2>Viimeisimmät kaupat</h2>
-    <div id="trades" class="trades"></div>
-  </section>
-</div>
-</main>
-<footer>
-  <p>Tämä on tekninen demo. Kaupat tehdään keksityllä rahalla ja robottien kanssa, eikä sivusto ota vastaan talletuksia eikä säilytä kenenkään varoja. Hinnat ovat satunnaisia, eivät oikeita markkinahintoja. Ei sijoitusneuvontaa.</p>
-  <p>Palkkiovertailu (peruskerros, maker/taker, lähde <a href="https://tokentax.co/blog/crypto-exchange-with-lowest-fees">TokenTax 3.10.2026</a>): Binance.US 0 % / 0,02 % (vain osassa USA:ta), Bitstamp 0,30 % / 0,40 %, Kraken Pro 0,40 % / 0,80 %, Coinbase Advanced 0,50 % / 0,90 %. Demon palkkiot on asetettu näitä matalammiksi. Oikean pörssin palkkiot riippuisivat kuluista ja luvista.</p>
-  <p><a href="https://github.com/Miksu900/porssi">Lähdekoodi</a></p>
-</footer>
-<script type="module" src="app.js"></script>
+<footer class="wrap"><p>Demopörssi on kehitysvaiheessa oleva harjoitusprojekti. Oikea kaupankäyntipalvelu vaatisi viranomaisluvan, jota tällä sivustolla ei ole.</p></footer>
+<script type="module">
+import { Exchange } from "./engine.mjs";
+import { createMarket } from "./bots.mjs";
+const ex = new Exchange(), m = createMarket(ex, { start: 60000 });
+const s = [];
+const rec = () => { m.tick(); if (ex.lastPrice) s.push(Number(ex.lastPrice) / 100); if (s.length > 120) s.shift(); };
+for (let i = 0; i < 120; i++) rec();
+const $ = (id) => document.getElementById(id);
+function draw() {
+  const c = $("spark"), g = c.getContext("2d"), W = c.width, H = c.height;
+  g.clearRect(0, 0, W, H);
+  const lo = Math.min(...s), hi = Math.max(...s), up = s.at(-1) >= s[0];
+  g.strokeStyle = up ? "#26d19a" : "#ff5c70"; g.lineWidth = 3; g.lineJoin = "round"; g.beginPath();
+  s.forEach((v, i) => { const x = (i / (s.length - 1)) * W, y = H - 6 - ((v - lo) / (hi - lo || 1)) * (H - 12); i ? g.lineTo(x, y) : g.moveTo(x, y); });
+  g.stroke();
+  $("lp").textContent = s.at(-1).toLocaleString("fi-FI", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
+  const ch = ((s.at(-1) - s[0]) / s[0]) * 100;
+  $("lc").textContent = (ch >= 0 ? "+" : "") + ch.toFixed(2).replace(".", ",") + " %";
+  $("lc").className = "sub " + (ch >= 0 ? "up" : "down");
+}
+draw();
+setInterval(() => { rec(); draw(); }, 1500);
+</script>
 </body>
 </html>

@@ -1,5 +1,5 @@
-import { Exchange, ExchangeError, toUnits, fmtUnits } from "./engine.mjs";
-import { createMarket } from "./bots.mjs";
+import { Exchange, ExchangeError, toUnits, fmtUnits } from "../engine.mjs";
+import { createMarket } from "../bots.mjs";
 
 const ME = "sina";
 const $ = (id) => document.getElementById(id);
