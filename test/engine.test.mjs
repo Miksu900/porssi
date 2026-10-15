@@ -277,3 +277,34 @@ test("autopilotti: hintarajat ostaa halvalla ja myy kalliilla", async () => {
   ap.tick();
   assert.ok(ex.balances("u").BTC.free < before);
 });
+
+test("sma ja rsi", async () => {
+  const { sma, rsi } = await import("../src/autopilot.mjs");
+  assert.equal(sma([1, 2, 3, 4], 2), 3.5);
+  assert.equal(sma([1], 2), null);
+  assert.equal(rsi([1, 2, 3, 4, 5, 6], 5), 100);
+  assert.equal(rsi([6, 5, 4, 3, 2, 1], 5), 0);
+  assert.equal(Math.round(rsi([1, 2, 1, 2, 1, 2], 5)), 60);
+});
+
+test("autopilotti: MA-leikkaus ostaa nousussa ja myy laskussa", async () => {
+  const { createAutopilot } = await import("../src/autopilot.mjs");
+  const ex = mk();
+  fund(ex, "mm", "10000000", "1000");
+  fund(ex, "t", "10000000", "1000");
+  fund(ex, "u", "10000", "5");
+  const setPrice = (p) => {
+    ex.placeOrder({ acct: "mm", side: "sell", type: "limit", price: EUR(p), qty: BTC("1") });
+    ex.placeOrder({ acct: "t", side: "buy", type: "market", quoteBudget: EUR(p) });
+  };
+  setPrice(100);
+  ex.placeOrder({ acct: "mm", side: "buy", type: "limit", price: EUR("50"), qty: BTC("3") });
+  ex.placeOrder({ acct: "mm", side: "sell", type: "limit", price: EUR("500"), qty: BTC("5") });
+  const ap = createAutopilot(ex, "u", "ma", { fast: 2, slow: 4, euros: 1000 });
+  for (const p of [80, 85, 90, 95, 100, 105]) { setPrice(p); ap.tick(); } // nousu asettaa tilan
+  for (const p of [100, 95, 90, 80, 70, 60]) { setPrice(p); ap.tick(); } // lasku → myynti
+  assert.ok(ex.balances("u").BTC.free < BTC("5"), "myi laskussa");
+  const btcAfterSell = ex.balances("u").BTC.free;
+  for (const p of [65, 80, 100, 120, 140, 160]) { setPrice(p); ap.tick(); } // nousu → osto
+  assert.ok(ex.balances("u").BTC.free > btcAfterSell, "osti nousussa");
+});

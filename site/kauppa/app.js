@@ -219,7 +219,7 @@ function stratChange() {
   const s = $("strat").value;
   $("sdesc").textContent = STRATEGIES[s].desc;
   $("p-dca").hidden = s !== "dca";
-  $("p-range").hidden = s !== "range";
+  for (const x of ["range", "ma", "meanrev", "breakout", "rsi"]) $("p-" + x).hidden = s !== x;
   if (s === "range" && !$("r-buy").value && ex.lastPrice) {
     const p = Number(ex.lastPrice) / 100;
     $("r-buy").value = Math.round(p * 0.99);
@@ -249,8 +249,24 @@ $("rgo").addEventListener("click", () => {
     const bb = num("r-buy"), sa = num("r-sell"), eur = num("r-eur"), fr = num("r-frac");
     if (!(bb > 0) || !(sa > bb) || !(eur >= 1) || !(fr > 0 && fr <= 100)) { $("rstat").textContent = "Tarkista luvut: myyntiraja pitää olla ostorajaa suurempi."; return; }
     params = { buyBelow: bb, sellAbove: sa, euros: eur, sellFraction: fr / 100, cooldownTicks: 5 };
+  } else if (s === "ma") {
+    const f = num("m-fast"), sl = num("m-slow"), eur = num("m-eur");
+    if (!(f >= 1) || !(sl > f) || !(eur >= 1)) { $("rstat").textContent = "Tarkista: hitaan keskiarvon pitää olla nopeaa pidempi."; return; }
+    params = { fast: Math.round(f), slow: Math.round(sl), euros: eur };
+  } else if (s === "meanrev") {
+    const per = num("v-per"), th = num("v-th"), eur = num("v-eur");
+    if (!(per >= 2) || !(th > 0) || !(eur >= 1)) { $("rstat").textContent = "Tarkista luvut."; return; }
+    params = { period: Math.round(per), threshold: th / 100, euros: eur, sellFraction: 0.5 };
+  } else if (s === "breakout") {
+    const w = num("b-win"), eur = num("b-eur");
+    if (!(w >= 2) || !(eur >= 1)) { $("rstat").textContent = "Tarkista luvut."; return; }
+    params = { window: Math.round(w), euros: eur };
+  } else if (s === "rsi") {
+    const per = num("i-per"), lo = num("i-low"), hi = num("i-high"), eur = num("i-eur");
+    if (!(per >= 2) || !(lo > 0 && hi > lo && hi < 100) || !(eur >= 1)) { $("rstat").textContent = "Tarkista: alaraja < yläraja, välillä 0–100."; return; }
+    params = { period: Math.round(per), low: lo, high: hi, euros: eur, sellFraction: 0.5 };
   }
-  auto = createAutopilot(ex, ME, s, params);
+  auto = createAutopilot(ex, ME, s, params, series.map((x) => x.p));
   robotUi();
 });
 setInterval(() => auto && robotUi(), 1500);
