@@ -14,7 +14,7 @@ cpSync("src/coach.mjs", "dist/coach.mjs");
 const data = JSON.parse(readFileSync("site/opeta/oppitunnit.json", "utf8"));
 const lessons = data.oppitunnit;
 const sources = data.lahteet;
-const nav = (root) => `<nav class="top"><a class="brand" href="${root}">Demopörssi</a><div><a href="${root}">Etusivu</a><a href="${root}kauppa/">Kauppa</a><a href="${root}opeta/" class="cur">Opeta</a><a href="${root}#palkkiot">Palkkiot</a><a href="${root}#tietoa">Tietoa</a></div></nav>`;
+const nav = (root) => `<nav class="top"><a class="brand" href="${root}">Demopörssi</a><div><a href="${root}">Etusivu</a><a href="${root}kauppa/">Kauppa</a><a href="${root}opeta/" class="cur">Opeta</a><a href="${root}#kisa">Kisa</a><a href="${root}#palkkiot">Palkkiot</a><a href="${root}#tietoa">Tietoa</a></div></nav>`;
 const head = (root, title, desc) => `<!doctype html><html lang="fi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>${esc(title)}</title><meta name="description" content="${esc(desc)}"><link rel="stylesheet" href="${root}style.css"></head><body class="site"><div class="demo">DEMO – ei oikeaa rahaa, ei oikeita kauppoja</div>${nav(root)}`;
 // ---- laskettu data (keksitty, 30 satunnaissiementä per tilanne) ----
 const SEEDS = Array.from({ length: 30 }, (_, i) => i + 1);

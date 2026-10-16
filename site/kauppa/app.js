@@ -119,6 +119,7 @@ function renderCoach() {
   $("cup").innerHTML = usedRobot
     ? `<b class="down">Ei kisakelpoinen</b><span class="sub">Robotti on ollut käytössä tällä kierroksella. Paina "Aloita alusta" aloittaaksesi uuden kisakelpoisen kierroksen.</span>`
     : `<b class="up">Kisakelpoinen</b><span class="sub">Kisakortti: tulos ${(pct >= 0 ? "+" : "") + pct.toFixed(2).replace(".", ",")} % alkusalkusta, ${s.closedCount} suljettua kauppaa. Vain itse tehdyt kaupat lasketaan.</span>`;
+  const pill = $("cupPill"); pill.textContent = usedRobot ? "Ei kisakelpoinen" : "Kisakelpoinen"; pill.classList.toggle("off", usedRobot);
   $("ex").innerHTML = coach.exercises(p, tot).map((e) => `<li class="${e.done ? "done" : ""}">${e.done ? "✓" : "○"} ${e.text}</li>`).join("");
 }
 
@@ -150,7 +151,7 @@ function draw() {
   }
   const view = cs.slice(-48);
   if (view.length < 2) return;
-  const axisW = 78, chartH = H * 0.78, volTop = H * 0.82;
+  const axisW = 96, chartH = H * 0.78, volTop = H * 0.82;
   const lo0 = Math.min(...view.map((k) => k.l)), hi0 = Math.max(...view.map((k) => k.h));
   const pad = (hi0 - lo0 || 1) * 0.08, lo = lo0 - pad, hi = hi0 + pad;
   const y = (v) => 6 + (1 - (v - lo) / (hi - lo)) * (chartH - 12);
@@ -158,7 +159,7 @@ function draw() {
   g.font = "20px ui-monospace, Menlo, Consolas, monospace";
   g.textBaseline = "middle";
   // ruudukko ja hinta-akseli
-  g.strokeStyle = "#1c2638"; g.lineWidth = 1; g.fillStyle = "#6f7c93";
+  g.strokeStyle = "#26313d"; g.lineWidth = 1; g.fillStyle = "#8a97a6";
   for (let k = 0; k <= 4; k++) {
     const v = lo + ((hi - lo) * k) / 4, yy = y(v);
     g.beginPath(); g.moveTo(0, yy); g.lineTo(W - axisW, yy); g.stroke();
@@ -166,7 +167,7 @@ function draw() {
   }
   const vmax = Math.max(...view.map((k) => k.v), 1e-9);
   view.forEach((k, i) => {
-    const x = i * slot + slot / 2, upc = k.c >= k.o, col = upc ? "#26d19a" : "#ff5c70";
+    const x = i * slot + slot / 2, upc = k.c >= k.o, col = upc ? "#35c48f" : "#f06b7c";
     g.strokeStyle = col; g.fillStyle = col; g.lineWidth = 2;
     g.beginPath(); g.moveTo(x, y(k.h)); g.lineTo(x, y(k.l)); g.stroke();
     const top = y(Math.max(k.o, k.c)), bh = Math.max(2, Math.abs(y(k.o) - y(k.c)));
@@ -178,9 +179,9 @@ function draw() {
   });
   // viimeisen hinnan viiva
   const last = view.at(-1).c, ly = y(last), upL = last >= view.at(-1).o;
-  g.setLineDash([6, 6]); g.strokeStyle = upL ? "#26d19a" : "#ff5c70"; g.beginPath(); g.moveTo(0, ly); g.lineTo(W - axisW, ly); g.stroke(); g.setLineDash([]);
-  g.fillStyle = upL ? "#26d19a" : "#ff5c70"; g.fillRect(W - axisW, ly - 14, axisW, 28);
-  g.fillStyle = "#04140e"; g.fillText(last.toLocaleString("fi-FI", { maximumFractionDigits: 0 }), W - axisW + 8, ly);
+  g.setLineDash([6, 6]); g.strokeStyle = upL ? "#35c48f" : "#f06b7c"; g.beginPath(); g.moveTo(0, ly); g.lineTo(W - axisW, ly); g.stroke(); g.setLineDash([]);
+  g.fillStyle = upL ? "#35c48f" : "#f06b7c"; g.fillRect(W - axisW, ly - 14, axisW, 28);
+  g.fillStyle = "#04150e"; g.fillText(last.toLocaleString("fi-FI", { maximumFractionDigits: 0 }), W - axisW + 8, ly);
 }
 
 function setSide(s) {
@@ -201,6 +202,7 @@ function layout() {
   const mb = type === "market" && side === "buy";
   $("lBudget").hidden = !mb;
   $("lQty").hidden = mb;
+  $("quick").hidden = false;
   estimate();
 }
 
@@ -211,6 +213,18 @@ document.addEventListener("click", (e) => {
   if (cb) { try { ex.cancelOrder(cb.dataset.c, ME); msg("Tilaus peruttu.", true); } catch (er) { msg(er.message); } render(); }
   const row = e.target.closest(".row[data-p]");
   if (row) { $("price").value = row.dataset.p; estimate(); }
+});
+document.addEventListener("click", (e) => {
+  const qb = e.target.closest("#quick button"); if (!qb) return;
+  const f = Number(qb.dataset.q), b = ex.balances(ME), p = lastP();
+  if (!p) return;
+  const eur = Number(b.EUR.free) / 100, btc = Number(b.BTC.free) / 1e8;
+  const price = type === "limit" ? Number($("price").value.replace(",", ".")) || p : p;
+  if (side === "buy") {
+    if (type === "market") $("budget").value = (eur * f).toFixed(2);
+    else $("qty").value = ((eur * f) / price * 0.9995).toFixed(6);
+  } else $("qty").value = (btc * f).toFixed(6);
+  estimate();
 });
 document.addEventListener("input", estimate);
 $("reset").addEventListener("click", () => { start(); msg("Aloitettu alusta: 10 000 € ja 0,5 BTC valerahaa.", true); });
